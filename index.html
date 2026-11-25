@@ -53,6 +53,8 @@
     }
 
     html, body {
+      width: 100%;
+      max-width: 100%;
       min-height: 100%;
       background-color: var(--bg-deep);
       color: var(--text-primary);
@@ -107,6 +109,7 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-subtle);
+      width: 100%;
     }
 
     .header-inner {
@@ -140,6 +143,10 @@
       box-shadow: 0 6px 18px rgba(30, 227, 165, 0.2);
     }
 
+    .brand-text {
+      min-width: 0;
+    }
+
     .brand-text h1 {
       font-size: 1.05rem;
       font-weight: 800;
@@ -155,7 +162,7 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
@@ -297,6 +304,7 @@
        3. GRADE PRINCIPAL (COLUNA LATERAL REPERTÓRIO + ÁREA PLAYER MULTIFAIXA)
        ========================================================================= */
     .main-layout {
+      width: 100%;
       max-width: 1380px;
       margin: 0 auto;
       padding: 20px;
@@ -306,11 +314,19 @@
       align-items: start;
     }
 
+    .player-section,
+    .sidebar-card {
+      min-width: 0;
+      max-width: 100%;
+    }
+
     .card {
       background: var(--card-dark);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-card);
+      min-width: 0;
+      max-width: 100%;
     }
 
     /* =========================================================================
@@ -343,10 +359,13 @@
       background: var(--bg-deep);
       border: 1px solid var(--border-subtle);
       color: var(--text-secondary);
+      flex-shrink: 0;
     }
 
     .search-box {
       position: relative;
+      width: 100%;
+      min-width: 0;
     }
 
     .search-box svg {
@@ -360,6 +379,7 @@
 
     .input-field {
       width: 100%;
+      min-width: 0;
       background: var(--bg-deep);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
@@ -407,6 +427,8 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .filter-label {
@@ -423,6 +445,8 @@
       overflow-x: auto;
       padding-bottom: 4px;
       scrollbar-width: none;
+      max-width: 100%;
+      -webkit-overflow-scrolling: touch;
     }
 
     .chip-scroll::-webkit-scrollbar {
@@ -471,10 +495,12 @@
       max-height: 560px;
       overflow-y: auto;
       padding-right: 3px;
+      min-width: 0;
     }
 
     .song-item {
       width: 100%;
+      min-width: 0;
       text-align: left;
       display: flex;
       align-items: flex-start;
@@ -605,6 +631,8 @@
       display: flex;
       flex-direction: column;
       gap: 22px;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .player-header {
@@ -613,6 +641,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
+      min-width: 0;
     }
 
     .player-song-info {
@@ -648,6 +677,7 @@
 
     .player-titles {
       min-width: 0;
+      flex: 1;
     }
 
     .player-titles h2 {
@@ -656,6 +686,7 @@
       letter-spacing: -0.02em;
       color: var(--text-primary);
       line-height: 1.2;
+      word-break: break-word;
     }
 
     .player-subtitle {
@@ -665,7 +696,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .meta-dot {
@@ -684,6 +715,13 @@
       background: var(--bg-deep);
       border: 1px solid var(--border-subtle);
       color: var(--mint);
+      max-width: 100%;
+    }
+
+    .mode-pill.loading {
+      color: #ddd6fe;
+      border-color: rgba(139, 92, 246, 0.5);
+      background: rgba(139, 92, 246, 0.12);
     }
 
     .player-header-actions {
@@ -698,6 +736,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
+      min-width: 0;
     }
 
     .transport-buttons {
@@ -738,6 +777,7 @@
       justify-content: center;
       box-shadow: 0 8px 24px rgba(30, 227, 165, 0.3);
       transition: transform var(--transition), background var(--transition);
+      flex-shrink: 0;
     }
 
     .btn-play:hover {
@@ -747,6 +787,19 @@
 
     .btn-play:active {
       transform: scale(0.95);
+    }
+
+    .btn-play.is-loading {
+      opacity: 0.75;
+    }
+
+    .spinner-svg {
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .btn-loop {
@@ -776,6 +829,7 @@
     .progress-area {
       flex: 1;
       min-width: 0;
+      width: 100%;
     }
 
     .progress-track-wrap {
@@ -783,6 +837,7 @@
       height: 30px;
       display: flex;
       align-items: center;
+      width: 100%;
     }
 
     .progress-rail {
@@ -885,6 +940,7 @@
       font-size: 0.78rem;
       font-variant-numeric: tabular-nums;
       color: var(--text-secondary);
+      width: 100%;
     }
 
     /* Painel de Ferramentas de Ensaio (Trecho A-B + Velocidade) */
@@ -896,12 +952,15 @@
       border-radius: var(--radius-md);
       background: rgba(15, 14, 19, 0.75);
       border: 1px solid var(--border-subtle);
+      min-width: 0;
+      max-width: 100%;
     }
 
     .tool-group {
       display: flex;
       flex-direction: column;
       gap: 8px;
+      min-width: 0;
     }
 
     .tool-title-row {
@@ -970,13 +1029,24 @@
       color: #e9d5ff;
     }
 
-    /* Mixer de Vozes (Pílulas Harmony Vox + Solo + Volume Individual) */
+    /* Mixer de Vozes (Pílulas Harmony Vox + Mute + Solo + Volume Individual) */
+    .mixer-wrapper {
+      min-width: 0;
+      max-width: 100%;
+    }
+
     .mixer-header {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
+      min-width: 0;
+    }
+
+    .mixer-header > div {
+      min-width: 0;
+      flex: 1 1 200px;
     }
 
     .mixer-header h3 {
@@ -987,12 +1057,16 @@
     .mixer-hint {
       font-size: 0.76rem;
       color: var(--text-secondary);
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     .tracks-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
       gap: 12px;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .track-card {
@@ -1003,7 +1077,9 @@
       display: flex;
       flex-direction: column;
       gap: 11px;
-      transition: all var(--transition);
+      min-width: 0;
+      max-width: 100%;
+      transition: background var(--transition), border-color var(--transition), opacity var(--transition);
     }
 
     .track-card.muted {
@@ -1022,6 +1098,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
+      min-width: 0;
     }
 
     .voice-pill-btn {
@@ -1066,7 +1143,7 @@
     .track-actions {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       flex-shrink: 0;
     }
 
@@ -1145,24 +1222,29 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      width: 100%;
+      min-width: 0;
     }
 
     .volume-slider {
       -webkit-appearance: none;
       appearance: none;
       flex: 1;
+      min-width: 0;
+      width: 100%;
       height: 6px;
       border-radius: var(--radius-pill);
       background: rgba(255, 255, 255, 0.14);
       outline: none;
       cursor: pointer;
+      touch-action: manipulation;
     }
 
     .volume-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 15px;
-      height: 15px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: var(--hot-pink);
       border: 2px solid #fff;
@@ -1171,8 +1253,8 @@
     }
 
     .volume-slider::-moz-range-thumb {
-      width: 15px;
-      height: 15px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: var(--hot-pink);
       border: 2px solid #fff;
@@ -1181,7 +1263,8 @@
     }
 
     .volume-pct {
-      width: 36px;
+      width: 38px;
+      flex-shrink: 0;
       text-align: right;
       font-size: 0.74rem;
       font-weight: 700;
@@ -1286,6 +1369,7 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+      min-width: 0;
     }
 
     .form-field.full {
@@ -1401,6 +1485,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     .draft-index {
@@ -1574,16 +1659,19 @@
     /* Toast flutuante */
     .toast-container {
       position: fixed;
-      right: 18px;
-      bottom: 18px;
+      right: 14px;
+      left: 14px;
+      bottom: 16px;
       z-index: 90;
       display: flex;
       flex-direction: column;
+      align-items: flex-end;
       gap: 8px;
-      max-width: 340px;
+      pointer-events: none;
     }
 
     .toast {
+      max-width: 340px;
       padding: 11px 15px;
       border-radius: var(--radius-md);
       background: var(--card-hover);
@@ -1593,6 +1681,7 @@
       font-weight: 500;
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
       animation: toastIn 0.2s ease;
+      pointer-events: auto;
     }
 
     .toast.success {
@@ -1615,7 +1704,7 @@
        ========================================================================= */
     @media (max-width: 1024px) {
       .main-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
       /* Em telas menores, coloca o Player no topo e o Repertório logo abaixo */
       .player-section {
@@ -1627,26 +1716,59 @@
     }
 
     @media (max-width: 680px) {
+      .header-inner {
+        padding: 12px 14px;
+      }
       .main-layout {
         padding: 12px;
         gap: 14px;
       }
       .player-card, .sidebar-card {
-        padding: 16px;
+        padding: 14px;
+        gap: 16px;
+      }
+      .player-cover {
+        width: 58px;
+        height: 58px;
+        font-size: 1.15rem;
+        border-radius: 13px;
+      }
+      .player-titles h2 {
+        font-size: 1.18rem;
+      }
+      .player-subtitle {
+        font-size: 0.8rem;
       }
       .transport-row {
         flex-direction: column;
         align-items: stretch;
-        gap: 14px;
+        gap: 12px;
       }
       .transport-buttons {
         justify-content: center;
       }
-      .study-toolbar, .form-grid, .draft-audio-inputs {
-        grid-template-columns: 1fr;
+      .btn-play {
+        width: 54px;
+        height: 54px;
       }
-      .player-titles h2 {
-        font-size: 1.2rem;
+      .study-toolbar, .form-grid, .draft-audio-inputs {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .tracks-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .track-card {
+        padding: 11px 12px;
+      }
+      .tool-btn {
+        padding: 6px 9px;
+        font-size: 0.72rem;
+      }
+      .toast-container {
+        align-items: stretch;
+      }
+      .toast {
+        max-width: 100%;
       }
     }
   </style>
@@ -1673,7 +1795,7 @@
       <div class="header-actions">
         <span id="cloudStatusBadge" class="cloud-badge">Conectando à nuvem...</span>
         <span id="adminModeBadge" class="admin-badge hidden">Modo Admin</span>
-        <button id="btnShareLink" type="button" class="btn btn-secondary" title="Copiar link limpo para enviar aos cantores">
+        <button id="btnShareLink" type="button" class="btn btn-secondary btn-sm" title="Copiar link limpo para enviar aos cantores">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="18" cy="5" r="3"></circle>
             <circle cx="6" cy="12" r="3"></circle>
@@ -1683,23 +1805,23 @@
           </svg>
           Compartilhar
         </button>
-        <button id="btnQuickExportJson" type="button" class="btn btn-secondary hidden" title="Baixar catalogo.json pronto para subir no GitHub Pages">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button id="btnQuickExportJson" type="button" class="btn btn-secondary btn-sm hidden" title="Baixar catalogo.json pronto para subir no GitHub Pages">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
-          Salvar / Exportar catalogo.json
+          Exportar JSON
         </button>
-        <button id="btnOpenJsonModal" type="button" class="btn btn-secondary hidden">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button id="btnOpenJsonModal" type="button" class="btn btn-secondary btn-sm hidden">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="16 18 22 12 16 6"></polyline>
             <polyline points="8 6 2 12 8 18"></polyline>
           </svg>
           Catálogo JSON
         </button>
-        <button id="btnOpenAddModal" type="button" class="btn btn-primary hidden">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <button id="btnOpenAddModal" type="button" class="btn btn-primary btn-sm hidden">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
@@ -1805,6 +1927,9 @@
                 <rect x="6" y="4" width="4" height="16" rx="1"></rect>
                 <rect x="14" y="4" width="4" height="16" rx="1"></rect>
               </svg>
+              <svg id="iconLoading" class="hidden spinner-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+                <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+              </svg>
             </button>
 
             <button id="btnForward5" type="button" class="btn-skip" title="Avançar 5 segundos">+5s</button>
@@ -1861,7 +1986,7 @@
         </div>
 
         <!-- Mixer de Divisões Vocais -->
-        <div>
+        <div class="mixer-wrapper">
           <div class="mixer-header">
             <div>
               <h3>Divisões Vocais</h3>
@@ -1993,7 +2118,7 @@
                 <button id="btnGenerateGithubPaths" type="button" class="btn btn-secondary btn-sm">Gerar caminhos GitHub</button>
               </div>
               <div class="info-notice warn">
-                <strong>Arquivo local (IndexedDB):</strong> fica salvo e toca neste navegador mesmo após atualizar (F5). <strong>Para os cantores ouvirem online:</strong> suba os arquivos MP3 na pasta acima no GitHub, clique em <em>"Gerar caminhos GitHub"</em> e depois em <em>"Salvar / Exportar catalogo.json"</em> para atualizar o arquivo na raiz do repositório.
+                <strong>Dica de publicação:</strong> suba os arquivos MP3 (preferencialmente 128 kbps) na pasta acima no GitHub, clique em <em>"Gerar caminhos GitHub"</em> e depois em <em>"Salvar Música"</em>.
               </div>
             </div>
 
@@ -2045,7 +2170,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE CONFIRMAÇÃO CUSTOMIZADO (SEM alert/confirm NATIVO) -->
+  <!-- MODAL DE CONFIRMAÇÃO CUSTOMIZADO -->
   <div id="confirmModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="modal-box modal-sm">
       <div class="modal-header">
@@ -2512,7 +2637,6 @@
               }
             });
 
-            // Ordenação em memória (mais recentes primeiro)
             cloudSongs.sort((a, b) => (Number(b.createdAt) || 0) - (Number(a.createdAt) || 0));
 
             if (cloudSongs.length > 0) {
@@ -2531,7 +2655,6 @@
             renderFilters();
             renderSongList();
 
-            // Só recarrega o player se não estiver tocando a mesma música
             const currentInEngine = engine.currentSong && engine.currentSong.id === currentSongId;
             if (!currentInEngine || !engine.isPlaying) {
               selectSong(currentSongId);
@@ -2581,24 +2704,47 @@
       }
 
       /* =======================================================================
-         3. MOTOR DE ÁUDIO MULTIFAIXA (REAL + SÍNTESE WEB AUDIO COM PITCH FIXO)
+         3. MOTOR DE ÁUDIO MULTIFAIXA (WEB AUDIO BUFFER SAMPLE-ACCURATE + PITCH)
+         - Em 1.0x: usa AudioBufferSourceNode + GainNode (sincronia de 0ms, zero
+           picotes ao mexer nos sliders, funciona perfeitamente no Android e iOS).
+         - Em velocidades != 1.0x: usa os mesmos arquivos já em RAM (Blob URL)
+           com preservesPitch = true, roteados para GainNode e resync suave.
          ======================================================================= */
       class MultiTrackEngine {
-        constructor(onTimeUpdate, onPlayStateChange) {
+        constructor(onTimeUpdate, onPlayStateChange, onLoadingChange) {
           this.onTimeUpdate = onTimeUpdate;
           this.onPlayStateChange = onPlayStateChange;
+          this.onLoadingChange = onLoadingChange || (() => {});
 
           this.ctx = null;
           this.masterGain = null;
+
+          // Demo Web Audio
           this.demoTrackGains = {};
           this.demoActiveNodes = [];
           this.lastDemoStepIdx = -1;
 
-          this.audioElements = {};
-          this.currentSong = null;
-          this.mode = 'demo'; // 'demo' | 'real'
-          this.trackStates = {};
+          // Motor Real (Web Audio Buffer + Blob RAM)
+          this.bufferCache = new Map(); // trackSrc -> { audioBuffer, blobUrl }
+          this.loadedTracks = {};       // trackId -> { audioBuffer, blobUrl, directUrl }
+          this.bufferGains = {};        // trackId -> GainNode
+          this.activeSources = [];      // AudioBufferSourceNode[]
+          this.bufferStartCtxTime = 0;
+          this.bufferStartOffset = 0;
 
+          // Fallback / Velocidade != 1.0x (HTMLAudioElement a partir de RAM + GainNode)
+          this.audioElements = {};      // trackId -> HTMLAudioElement
+          this.mediaElementGains = {};  // trackId -> GainNode
+          this.lastResyncAt = {};       // trackId -> timestamp ms
+
+          this.currentSong = null;
+          this.mode = 'demo';           // 'demo' | 'real'
+          this.activeRealBackend = 'buffer'; // 'buffer' | 'media'
+          this.loadSeq = 0;
+          this.isLoading = false;
+          this.loadPromise = null;
+
+          this.trackStates = {};
           this.isPlaying = false;
           this.currentTime = 0;
           this.duration = 16;
@@ -2616,7 +2762,7 @@
             const AudioCtx = window.AudioContext || window.webkitAudioContext;
             this.ctx = new AudioCtx();
             this.masterGain = this.ctx.createGain();
-            this.masterGain.gain.value = 0.85;
+            this.masterGain.gain.value = 0.92;
             this.masterGain.connect(this.ctx.destination);
           }
           if (this.ctx.state === 'suspended') {
@@ -2642,7 +2788,18 @@
           this.lastDemoStepIdx = -1;
         }
 
-        cleanupRealAudios() {
+        stopBufferSources() {
+          this.activeSources.forEach((src) => {
+            try {
+              src.onended = null;
+              src.stop();
+              src.disconnect();
+            } catch (e) {}
+          });
+          this.activeSources = [];
+        }
+
+        cleanupMediaElements() {
           Object.values(this.audioElements).forEach((el) => {
             try {
               el.pause();
@@ -2651,12 +2808,18 @@
             } catch (e) {}
           });
           this.audioElements = {};
+          this.mediaElementGains = {};
+          this.lastResyncAt = {};
         }
 
         loadSong(song) {
           this.pause();
           this.stopDemoNodes();
-          this.cleanupRealAudios();
+          this.stopBufferSources();
+          this.cleanupMediaElements();
+
+          this.loadSeq += 1;
+          const mySeq = this.loadSeq;
 
           this.currentSong = song;
           this.currentTime = 0;
@@ -2664,6 +2827,10 @@
           this.loopB = null;
           this.trackStates = {};
           this.demoTrackGains = {};
+          this.bufferGains = {};
+          this.loadedTracks = {};
+          this.isLoading = false;
+          this.loadPromise = null;
 
           const hasRealAudio = (song.tracks || []).some((t) => t.localObjectUrl || t.audioUrl);
           this.mode = (!song.isDemo && hasRealAudio) ? 'real' : (song.isDemo ? 'demo' : 'real');
@@ -2675,35 +2842,90 @@
           if (this.mode === 'demo') {
             const arr = DEMO_ARRANGEMENTS[song.id] || DEMO_ARRANGEMENTS['demo-agnus-dei'];
             this.duration = arr.duration;
+            this.onLoadingChange(false, '');
+            this.onTimeUpdate(0, this.duration);
           } else {
             this.duration = Number(song.duration) > 0 ? Number(song.duration) : 180;
-            (song.tracks || []).forEach((t) => {
-              const src = t.localObjectUrl || t.audioUrl;
-              if (!src) return;
-              const audio = new Audio();
-              audio.crossOrigin = 'anonymous';
-              audio.preload = 'auto';
-              audio.src = src;
-              audio.preservesPitch = true;
-              audio.mozPreservesPitch = true;
-              audio.webkitPreservesPitch = true;
-              audio.playbackRate = this.playbackRate;
+            this.onTimeUpdate(0, this.duration);
 
-              audio.addEventListener('loadedmetadata', () => {
-                if (Number.isFinite(audio.duration) && audio.duration > 0) {
-                  if (this.duration === 180 || audio.duration > this.duration) {
-                    this.duration = audio.duration;
-                    this.onTimeUpdate(this.currentTime, this.duration);
-                  }
-                }
-              });
+            const tracksWithSrc = (song.tracks || []).filter((t) => t.localObjectUrl || t.audioUrl);
+            if (tracksWithSrc.length > 0) {
+              this.loadPromise = this.preloadRealTracks(song, tracksWithSrc, mySeq);
+            } else {
+              this.onLoadingChange(false, '');
+            }
+          }
+        }
 
-              this.audioElements[t.id] = audio;
-            });
+        async preloadRealTracks(song, tracksWithSrc, seq) {
+          this.isLoading = true;
+          let completed = 0;
+          const total = tracksWithSrc.length;
+          this.onLoadingChange(true, 'Preparando faixas (0/' + total + ')...');
+
+          // Cria AudioContext apenas para decodeAudioData se já não existir
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!this.ctx) {
+            this.ctx = new AudioCtx();
+            this.masterGain = this.ctx.createGain();
+            this.masterGain.gain.value = 0.92;
+            this.masterGain.connect(this.ctx.destination);
           }
 
-          this.applyAllGains();
-          this.onTimeUpdate(0, this.duration);
+          let maxDur = 0;
+
+          await Promise.all(
+            tracksWithSrc.map(async (track) => {
+              const src = track.localObjectUrl || track.audioUrl;
+              try {
+                let cached = this.bufferCache.get(src);
+                if (!cached) {
+                  const response = await fetch(src);
+                  if (!response.ok) throw new Error('HTTP ' + response.status);
+                  const arrayBuf = await response.arrayBuffer();
+                  const blob = new Blob([arrayBuf], { type: response.headers.get('content-type') || 'audio/mpeg' });
+                  const blobUrl = URL.createObjectURL(blob);
+                  // slice(0) evita erro de detached ArrayBuffer
+                  const audioBuffer = await this.ctx.decodeAudioData(arrayBuf.slice(0));
+                  cached = { audioBuffer, blobUrl };
+                  this.bufferCache.set(src, cached);
+                }
+
+                if (seq !== this.loadSeq) return;
+                this.loadedTracks[track.id] = {
+                  audioBuffer: cached.audioBuffer,
+                  blobUrl: cached.blobUrl,
+                  directUrl: src
+                };
+                if (cached.audioBuffer && cached.audioBuffer.duration > maxDur) {
+                  maxDur = cached.audioBuffer.duration;
+                }
+              } catch (err) {
+                console.warn('Fallback streaming para faixa ' + track.name + ':', err);
+                if (seq !== this.loadSeq) return;
+                this.loadedTracks[track.id] = {
+                  audioBuffer: null,
+                  blobUrl: null,
+                  directUrl: src
+                };
+              } finally {
+                if (seq === this.loadSeq) {
+                  completed += 1;
+                  this.onLoadingChange(true, 'Preparando faixas (' + completed + '/' + total + ')...');
+                }
+              }
+            })
+          );
+
+          if (seq !== this.loadSeq) return;
+
+          if (maxDur > 0) {
+            this.duration = maxDur;
+            this.onTimeUpdate(this.currentTime, this.duration);
+          }
+
+          this.isLoading = false;
+          this.onLoadingChange(false, '');
         }
 
         getEffectiveGain(trackId) {
@@ -2717,31 +2939,63 @@
 
         applyAllGains() {
           if (!this.currentSong) return;
+          const now = this.ctx ? this.ctx.currentTime : 0;
+
           (this.currentSong.tracks || []).forEach((t) => {
             const g = this.getEffectiveGain(t.id);
+
             if (this.mode === 'demo') {
               const gainNode = this.demoTrackGains[t.id];
               if (gainNode && this.ctx) {
-                gainNode.gain.setTargetAtTime(g, this.ctx.currentTime, 0.025);
+                gainNode.gain.setTargetAtTime(g, now, 0.015);
               }
             } else {
-              const el = this.audioElements[t.id];
-              if (el) {
-                el.volume = Math.max(0, Math.min(1, g));
+              // GainNode do modo AudioBuffer (1.0x)
+              const bufGain = this.bufferGains[t.id];
+              if (bufGain && this.ctx) {
+                bufGain.gain.setTargetAtTime(g, now, 0.015);
+              }
+              // GainNode ou volume do modo MediaElement (velocidade != 1.0x ou fallback CORS)
+              const mediaGain = this.mediaElementGains[t.id];
+              if (mediaGain && this.ctx) {
+                mediaGain.gain.setTargetAtTime(g, now, 0.015);
+              } else {
+                const el = this.audioElements[t.id];
+                if (el) {
+                  el.volume = Math.max(0, Math.min(1, g));
+                }
               }
             }
           });
         }
 
-        setPlaybackRate(rate) {
+        hasAllBuffersReady() {
+          const entries = Object.values(this.loadedTracks);
+          return entries.length > 0 && entries.every((item) => Boolean(item.audioBuffer));
+        }
+
+        async setPlaybackRate(rate) {
+          const wasPlaying = this.isPlaying;
+          const prevRate = this.playbackRate;
           this.playbackRate = rate;
-          if (this.mode === 'real') {
-            Object.values(this.audioElements).forEach((el) => {
-              el.preservesPitch = true;
-              el.mozPreservesPitch = true;
-              el.webkitPreservesPitch = true;
-              el.playbackRate = rate;
-            });
+
+          if (this.mode === 'real' && wasPlaying) {
+            const needSwitchBackend = (Math.abs(prevRate - 1.0) < 0.01) !== (Math.abs(rate - 1.0) < 0.01);
+            if (needSwitchBackend) {
+              const pos = this.currentTime;
+              this.pause();
+              this.currentTime = pos;
+              await this.play();
+              return;
+            }
+            if (this.activeRealBackend === 'media') {
+              Object.values(this.audioElements).forEach((el) => {
+                el.preservesPitch = true;
+                el.mozPreservesPitch = true;
+                el.webkitPreservesPitch = true;
+                el.playbackRate = rate;
+              });
+            }
           }
         }
 
@@ -2770,6 +3024,100 @@
           this.loopB = null;
         }
 
+        startBufferPlayback(offsetSec) {
+          this.stopBufferSources();
+          const startCtxTime = this.ctx.currentTime + 0.04; // 40ms de folga garante sincronia perfeita
+          this.bufferStartCtxTime = startCtxTime;
+          this.bufferStartOffset = offsetSec;
+
+          (this.currentSong.tracks || []).forEach((track) => {
+            const loaded = this.loadedTracks[track.id];
+            if (!loaded || !loaded.audioBuffer) return;
+
+            if (!this.bufferGains[track.id]) {
+              const gn = this.ctx.createGain();
+              gn.connect(this.masterGain);
+              this.bufferGains[track.id] = gn;
+            }
+            this.bufferGains[track.id].gain.setValueAtTime(this.getEffectiveGain(track.id), this.ctx.currentTime);
+
+            const src = this.ctx.createBufferSource();
+            src.buffer = loaded.audioBuffer;
+            src.playbackRate.value = 1.0;
+            src.connect(this.bufferGains[track.id]);
+
+            if (offsetSec < loaded.audioBuffer.duration) {
+              src.start(startCtxTime, offsetSec);
+            }
+            this.activeSources.push(src);
+          });
+        }
+
+        async startMediaPlayback(offsetSec) {
+          // Cria elementos a partir do Blob em RAM (sem rede!) quando disponível
+          const tracks = this.currentSong.tracks || [];
+          const readyPromises = [];
+
+          tracks.forEach((track) => {
+            const loaded = this.loadedTracks[track.id];
+            if (!loaded) return;
+            const src = loaded.blobUrl || loaded.directUrl;
+            if (!src) return;
+
+            if (!this.audioElements[track.id]) {
+              const el = new Audio();
+              if (!loaded.blobUrl) el.crossOrigin = 'anonymous';
+              el.preload = 'auto';
+              el.src = src;
+              el.preservesPitch = true;
+              el.mozPreservesPitch = true;
+              el.webkitPreservesPitch = true;
+              el.playbackRate = this.playbackRate;
+
+              // Roteia pelo GainNode para volume suave sem picote (e funciona no iOS!)
+              try {
+                const mediaSrc = this.ctx.createMediaElementSource(el);
+                const gn = this.ctx.createGain();
+                gn.gain.value = this.getEffectiveGain(track.id);
+                mediaSrc.connect(gn);
+                gn.connect(this.masterGain);
+                this.mediaElementGains[track.id] = gn;
+                el.volume = 1.0;
+              } catch (e) {
+                el.volume = this.getEffectiveGain(track.id);
+              }
+
+              this.audioElements[track.id] = el;
+
+              if (el.readyState < 2) {
+                readyPromises.push(new Promise((res) => {
+                  const done = () => { el.removeEventListener('canplay', done); res(); };
+                  el.addEventListener('canplay', done);
+                  setTimeout(done, 1500);
+                }));
+              }
+            }
+          });
+
+          if (readyPromises.length > 0) {
+            await Promise.all(readyPromises);
+          }
+
+          this.applyAllGains();
+          const els = Object.values(this.audioElements);
+          els.forEach((el) => {
+            try {
+              el.currentTime = offsetSec;
+              el.preservesPitch = true;
+              el.mozPreservesPitch = true;
+              el.webkitPreservesPitch = true;
+              el.playbackRate = this.playbackRate;
+            } catch (e) {}
+          });
+
+          await Promise.all(els.map((el) => el.play().catch(() => {})));
+        }
+
         async play() {
           if (!this.currentSong) return;
 
@@ -2789,39 +3137,51 @@
             this.triggerDemoStepForTime(this.currentTime, true);
             this.startLoop();
             this.onPlayStateChange(true);
-          } else {
-            const list = Object.values(this.audioElements);
-            if (list.length === 0) {
-              showToast('Esta música não tem arquivos ou URLs de áudio vinculados.', 'error');
-              return;
-            }
-            this.applyAllGains();
-            list.forEach((el) => {
-              try {
-                el.currentTime = this.currentTime;
-                el.preservesPitch = true;
-                el.mozPreservesPitch = true;
-                el.webkitPreservesPitch = true;
-                el.playbackRate = this.playbackRate;
-              } catch (e) {}
-            });
-            try {
-              await Promise.all(list.map((el) => el.play().catch(() => {})));
-            } catch (e) {}
-            this.isPlaying = true;
-            this.lastFrameTs = performance.now();
-            this.startLoop();
-            this.onPlayStateChange(true);
+            return;
           }
+
+          // Modo Real
+          await this.ensureAudioContext();
+
+          if (this.isLoading && this.loadPromise) {
+            await this.loadPromise;
+          }
+
+          if (Object.keys(this.loadedTracks).length === 0) {
+            showToast('Esta música não tem arquivos ou URLs de áudio vinculados.', 'error');
+            return;
+          }
+
+          const useBufferBackend = Math.abs(this.playbackRate - 1.0) < 0.01 && this.hasAllBuffersReady();
+          this.activeRealBackend = useBufferBackend ? 'buffer' : 'media';
+
+          if (useBufferBackend) {
+            this.cleanupMediaElements();
+            this.startBufferPlayback(this.currentTime);
+          } else {
+            this.stopBufferSources();
+            await this.startMediaPlayback(this.currentTime);
+          }
+
+          this.isPlaying = true;
+          this.lastFrameTs = performance.now();
+          this.startLoop();
+          this.onPlayStateChange(true);
         }
 
         pause() {
+          if (this.isPlaying && this.mode === 'real' && this.activeRealBackend === 'buffer' && this.ctx) {
+            const elapsed = Math.max(0, this.ctx.currentTime - this.bufferStartCtxTime);
+            this.currentTime = Math.min(this.duration, this.bufferStartOffset + elapsed);
+          }
+
           this.isPlaying = false;
           if (this.rafId) {
             cancelAnimationFrame(this.rafId);
             this.rafId = null;
           }
           this.stopDemoNodes();
+          this.stopBufferSources();
           Object.values(this.audioElements).forEach((el) => {
             try { el.pause(); } catch (e) {}
           });
@@ -2831,13 +3191,21 @@
         seek(timeSec) {
           const clamped = Math.max(0, Math.min(this.duration, timeSec));
           this.currentTime = clamped;
+
           if (this.mode === 'real') {
-            Object.values(this.audioElements).forEach((el) => {
-              try { el.currentTime = clamped; } catch (e) {}
-            });
+            if (this.isPlaying) {
+              if (this.activeRealBackend === 'buffer') {
+                this.startBufferPlayback(clamped);
+              } else {
+                Object.values(this.audioElements).forEach((el) => {
+                  try { el.currentTime = clamped; } catch (e) {}
+                });
+              }
+            }
           } else if (this.isPlaying) {
             this.triggerDemoStepForTime(clamped, true);
           }
+
           this.onTimeUpdate(this.currentTime, this.duration);
         }
 
@@ -2850,13 +3218,21 @@
 
             if (this.mode === 'demo') {
               this.currentTime += dt * this.playbackRate;
+            } else if (this.activeRealBackend === 'buffer' && this.ctx) {
+              const elapsed = Math.max(0, this.ctx.currentTime - this.bufferStartCtxTime);
+              this.currentTime = this.bufferStartOffset + elapsed;
             } else {
-              const masterEl = Object.values(this.audioElements)[0];
-              if (masterEl) {
+              const entries = Object.entries(this.audioElements);
+              if (entries.length > 0) {
+                const [, masterEl] = entries[0];
                 this.currentTime = masterEl.currentTime;
-                // Mantém todas as faixas sincronizadas
-                Object.values(this.audioElements).forEach((el) => {
-                  if (el !== masterEl && Math.abs(el.currentTime - this.currentTime) > 0.14) {
+                // Ressincronização inteligente com cooldown (evita picotes)
+                entries.forEach(([trkId, el]) => {
+                  if (el === masterEl || el.seeking || el.readyState < 3) return;
+                  const drift = Math.abs(el.currentTime - this.currentTime);
+                  const lastSync = this.lastResyncAt[trkId] || 0;
+                  if (drift > 0.22 && (nowTs - lastSync) > 1500) {
+                    this.lastResyncAt[trkId] = nowTs;
                     try { el.currentTime = this.currentTime; } catch (e) {}
                   }
                 });
@@ -3006,12 +3382,11 @@
       let selectedCategory = 'Todos';
       let selectedKey = 'Todos';
       let selectedVoice = 'Todas';
+      let defaultPlayerModeText = 'Demo Interativa';
 
-      // Modo Cantor (padrão) vs Modo Admin (?admin=1 na URL)
       const urlParams = new URLSearchParams(window.location.search);
       let isAdminMode = urlParams.get('admin') === '1';
 
-      // Referências DOM principais
       const elAdminModeBadge = document.getElementById('adminModeBadge');
       const elBtnShareLink = document.getElementById('btnShareLink');
       const elBtnQuickExportJson = document.getElementById('btnQuickExportJson');
@@ -3040,6 +3415,7 @@
       const elBtnPlayPause = document.getElementById('btnPlayPause');
       const elIconPlay = document.getElementById('iconPlay');
       const elIconPause = document.getElementById('iconPause');
+      const elIconLoading = document.getElementById('iconLoading');
       const elBtnRewind5 = document.getElementById('btnRewind5');
       const elBtnForward5 = document.getElementById('btnForward5');
       const elBtnLoopAll = document.getElementById('btnLoopAll');
@@ -3062,7 +3438,7 @@
       const elSpeedStatusLabel = document.getElementById('speedStatusLabel');
       const elTracksGrid = document.getElementById('tracksGrid');
 
-      const engine = new MultiTrackEngine(updateProgressUI, updatePlayButtonUI);
+      const engine = new MultiTrackEngine(updateProgressUI, updatePlayButtonUI, updateLoadingUI);
 
       function applyAdminUI() {
         elAdminModeBadge.classList.toggle('hidden', !isAdminMode);
@@ -3078,7 +3454,23 @@
       /* =======================================================================
          5. RENDERIZAÇÃO DO PLAYER, BARRA A-B, VELOCIDADE E MIXER
          ======================================================================= */
+      function updateLoadingUI(isLoading, text) {
+        elBtnPlayPause.classList.toggle('is-loading', isLoading);
+        elPlayerModeBadge.classList.toggle('loading', isLoading);
+        if (isLoading) {
+          elIconPlay.classList.add('hidden');
+          elIconPause.classList.add('hidden');
+          elIconLoading.classList.remove('hidden');
+          elPlayerModeBadge.textContent = text || 'Carregando faixas...';
+        } else {
+          elIconLoading.classList.add('hidden');
+          updatePlayButtonUI(engine.isPlaying);
+          elPlayerModeBadge.textContent = defaultPlayerModeText;
+        }
+      }
+
       function updatePlayButtonUI(isPlaying) {
+        if (engine.isLoading) return;
         elIconPlay.classList.toggle('hidden', isPlaying);
         elIconPause.classList.toggle('hidden', !isPlaying);
       }
@@ -3194,26 +3586,27 @@
         }
 
         currentSongId = song.id;
-        engine.loadSong(song);
+
+        const hasLocal = (song.tracks || []).some((t) => t.localObjectUrl);
+        const hasOnline = (song.tracks || []).some((t) => t.audioUrl);
+        defaultPlayerModeText = song.isDemo
+          ? 'Demo Interativa · ' + song.tracks.length + ' faixas'
+          : hasOnline && hasLocal
+            ? 'Online + Local · ' + song.tracks.length + ' faixas'
+            : hasOnline
+              ? 'Áudio Online (Sincronizado) · ' + song.tracks.length + ' faixas'
+              : hasLocal
+                ? 'Áudio Local (neste navegador) · ' + song.tracks.length + ' faixas'
+                : 'Sem áudio vinculado · ' + song.tracks.length + ' faixas';
 
         elPlayerCover.innerHTML = renderCoverMarkup(song);
         elPlayerTitle.textContent = song.title;
         elPlayerArtist.textContent = song.artist;
         elPlayerKey.textContent = 'Tom ' + song.key;
         elPlayerCategory.textContent = song.category;
+        elPlayerModeBadge.textContent = defaultPlayerModeText;
 
-        const hasReal = (song.tracks || []).some((t) => t.localObjectUrl || t.audioUrl);
-        const hasLocal = (song.tracks || []).some((t) => t.localObjectUrl);
-        const hasOnline = (song.tracks || []).some((t) => t.audioUrl);
-        elPlayerModeBadge.textContent = song.isDemo
-          ? 'Demo Interativa · ' + song.tracks.length + ' faixas'
-          : hasOnline && hasLocal
-            ? 'Online + Local (IndexedDB) · ' + song.tracks.length + ' faixas'
-            : hasOnline
-              ? 'Áudio Online (GitHub) · ' + song.tracks.length + ' faixas'
-              : hasLocal
-                ? 'Áudio Local (apenas neste navegador) · ' + song.tracks.length + ' faixas'
-                : 'Sem áudio vinculado · ' + song.tracks.length + ' faixas';
+        engine.loadSong(song);
 
         updateABUI();
         renderSpeedButtons();
@@ -3336,7 +3729,6 @@
       const elInputCustomVoice = document.getElementById('inputCustomVoice');
       const elDraftTracksContainer = document.getElementById('draftTracksContainer');
 
-      // Popula os tons musicais no select
       elInputKey.innerHTML = ALL_KEYS.map((k) => '<option value="' + k + '">' + k + '</option>').join('');
 
       let editingSongId = null;
@@ -3393,7 +3785,7 @@
             '<div class="draft-track-row" data-idx="' + idx + '">' +
               '<div class="draft-track-head">' +
                 '<span class="draft-index">' + (idx + 1) + '</span>' +
-                '<input type="text" class="input-field draft-name" data-idx="' + idx + '" value="' + escapeHtml(track.name) + '" required style="padding: 7px 10px; font-size: 0.82rem; font-weight: 600;" />' +
+                '<input type="text" class="input-field draft-name" data-idx="' + idx + '" value="' + escapeHtml(track.name) + '" required style="padding: 7px 10px; font-size: 0.82rem; font-weight: 600; flex: 1; min-width: 120px;" />' +
                 sourceBadge +
                 '<div class="draft-order-btns">' +
                   '<button type="button" class="icon-mini-btn" data-move="up" data-idx="' + idx + '" ' + (idx === 0 ? 'disabled' : '') + ' title="Subir ordem">↑</button>' +
@@ -3489,7 +3881,6 @@
       /* =======================================================================
          9. EVENT LISTENERS
          ======================================================================= */
-      // Player Transporte
       elBtnPlayPause.addEventListener('click', () => {
         if (engine.isPlaying) engine.pause();
         else engine.play();
@@ -3508,7 +3899,6 @@
         engine.seek(parseFloat(e.target.value) || 0);
       });
 
-      // Marcador A-B
       elBtnMarkA.addEventListener('click', () => {
         engine.setLoopA();
         updateABUI();
@@ -3528,7 +3918,6 @@
         showToast('Marcadores A-B limpos.');
       });
 
-      // Velocidade
       elSpeedButtonsRow.addEventListener('click', (e) => {
         const btn = e.target.closest('button[data-speed]');
         if (!btn) return;
@@ -3538,7 +3927,6 @@
         showToast('Velocidade ajustada para ' + spd + 'x (tom preservado).');
       });
 
-      // Mixer de Vozes
       elTracksGrid.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-action]');
         if (!btn) return;
@@ -3567,7 +3955,15 @@
         const st = engine.trackStates[id];
         if (!st) return;
         st.volume = val;
-        if (val > 0 && st.muted) st.muted = false;
+        if (val > 0 && st.muted) {
+          st.muted = false;
+          const card = e.target.closest('.track-card');
+          if (card) {
+            card.classList.remove('muted');
+            const muteBtn = card.querySelector('.btn-mute');
+            if (muteBtn) muteBtn.classList.remove('active');
+          }
+        }
         engine.applyAllGains();
         const card = e.target.closest('.track-card');
         if (card) {
@@ -3589,7 +3985,6 @@
         showToast('Mixer restaurado para 85%, 1.0x e sem filtros.', 'success');
       });
 
-      // Editar e Excluir Música
       document.getElementById('btnEditSong').addEventListener('click', () => {
         if (engine.currentSong) openSongModal(engine.currentSong);
       });
@@ -3616,7 +4011,6 @@
         );
       });
 
-      // Busca e Filtros
       elSearchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value.trim();
         elBtnClearSearch.classList.toggle('hidden', !searchQuery);
@@ -3660,7 +4054,6 @@
         selectSong(item.dataset.songId);
       });
 
-      // Modal Nova Música / Editar
       document.getElementById('btnOpenAddModal').addEventListener('click', () => openSongModal(null));
       document.getElementById('btnCloseSongModal').addEventListener('click', closeSongModal);
       document.getElementById('btnCancelSongModal').addEventListener('click', closeSongModal);
@@ -3878,7 +4271,7 @@
         const hasMissingOnlineUrls = preparedTracks.some((t) => !t.audioUrl && t.hasLocalBlob);
 
         if (synced && hasMissingOnlineUrls) {
-          showToast('"' + title + '" salva na nuvem! Lembre-se de preencher as URLs dos MP3 para os cantores ouvirem no celular.', 'success');
+          showToast('"' + title + '" salva na nuvem! Lembre-se de preencher os caminhos dos MP3 para os cantores ouvirem no celular.', 'success');
         } else if (synced) {
           showToast('"' + title + '" salva e sincronizada na nuvem!', 'success');
         } else {
@@ -3897,7 +4290,6 @@
         selectSong(targetId);
       });
 
-      // Botão Compartilhar (copia link limpo para os cantores)
       elBtnShareLink.addEventListener('click', () => {
         const cleanUrl = window.location.origin + window.location.pathname;
         const tempInput = document.createElement('input');
@@ -3913,7 +4305,6 @@
         tempInput.remove();
       });
 
-      // Modal JSON e Exportação Rápida
       elBtnQuickExportJson.addEventListener('click', () => {
         downloadCatalogJsonFile();
       });
@@ -4029,7 +4420,6 @@
         }
       });
 
-      // Modal de Confirmação Customizado
       document.getElementById('btnConfirmCancel').addEventListener('click', closeConfirm);
       document.getElementById('btnConfirmOk').addEventListener('click', async () => {
         const cb = confirmCallback;
@@ -4039,7 +4429,6 @@
         }
       });
 
-      // Fechar modais ao clicar no fundo escuro ou pressionar Esc
       [elSongModal, elJsonModal, document.getElementById('confirmModal')].forEach((modalEl) => {
         if (!modalEl) return;
         modalEl.addEventListener('click', (e) => {
@@ -4092,7 +4481,7 @@
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) return data;
         } catch (err) {
-          // Arquivo externo opcional (usado no GitHub Pages)
+          // Arquivo externo opcional
         }
         return null;
       }
@@ -4107,7 +4496,6 @@
           return;
         }
 
-        // Fallback para GitHub Pages / uso local via catalogo.json
         const external = await loadExternalCatalogJson();
         if (external) {
           catalog = external;
