@@ -13,14 +13,14 @@
        1. DESIGN TOKENS & RESET (TEMA ESCURO INSPIRADO NO HARMONY VOX)
        ========================================================================= */
     :root {
-      --bg-deep: #0f0e13;
-      --card-dark: #16151d;
-      --card-hover: #1f1d29;
-      --border-subtle: #262433;
-      --border-strong: #37344a;
+      --bg-deep: #0d0b14;
+      --card-dark: #161322;
+      --card-hover: #1e192e;
+      --border-subtle: #28233a;
+      --border-strong: #3c3456;
       --text-primary: #f4f4f6;
-      --text-secondary: #9ca3af;
-      --text-muted: #6b7280;
+      --text-secondary: #a19cb5;
+      --text-muted: #706a85;
 
       --mint: #1ee3a5;
       --mint-hover: #16c990;
@@ -28,7 +28,7 @@
 
       --purple-track: #3b1f63;
       --purple-fill: #8b5cf6;
-      --purple-soft: rgba(139, 92, 246, 0.18);
+      --purple-soft: rgba(139, 92, 246, 0.2);
 
       --plum-bg: #261624;
       --plum-border: #632849;
@@ -42,7 +42,7 @@
       --radius-md: 14px;
       --radius-lg: 20px;
       --radius-pill: 9999px;
-      --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.35);
+      --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.38);
       --transition: 0.18s ease;
     }
 
@@ -57,6 +57,10 @@
       max-width: 100%;
       min-height: 100%;
       background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(circle at 20% 0%, rgba(139, 92, 246, 0.18), transparent 42%),
+        radial-gradient(circle at 85% 5%, rgba(236, 72, 153, 0.15), transparent 38%);
+      background-attachment: fixed;
       color: var(--text-primary);
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.45;
@@ -81,7 +85,6 @@
       cursor: not-allowed;
     }
 
-    /* Scrollbar discreta */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -105,34 +108,36 @@
       position: sticky;
       top: 0;
       z-index: 30;
-      background: rgba(15, 14, 19, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(13, 11, 20, 0.86);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-subtle);
       width: 100%;
     }
 
     .header-inner {
-      max-width: 1380px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 14px 20px;
+      padding: 12px 18px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 11px;
       min-width: 0;
+      cursor: pointer;
+      text-align: left;
     }
 
     .brand-icon {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: 13px;
       background: linear-gradient(135deg, var(--mint), var(--purple-fill));
       display: flex;
@@ -148,14 +153,14 @@
     }
 
     .brand-text h1 {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--text-primary);
     }
 
     .brand-text p {
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       color: var(--text-secondary);
     }
 
@@ -214,38 +219,6 @@
       color: #fde68a;
     }
 
-    /* Rodapé discreto com alternância de Modo Admin */
-    .app-footer {
-      max-width: 1380px;
-      margin: 8px auto 24px;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.74rem;
-      color: var(--text-muted);
-    }
-
-    .footer-lock-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: var(--radius-sm);
-      color: var(--text-muted);
-      font-size: 0.72rem;
-      opacity: 0.55;
-      transition: all var(--transition);
-    }
-
-    .footer-lock-btn:hover,
-    .footer-lock-btn.active {
-      opacity: 1;
-      background: var(--card-dark);
-      color: var(--mint);
-    }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -301,23 +274,13 @@
     }
 
     /* =========================================================================
-       3. GRADE PRINCIPAL (COLUNA LATERAL REPERTÓRIO + ÁREA PLAYER MULTIFAIXA)
+       3. CONTAINER PRINCIPAL & VISTAS (HOME CARDS vs PLAYER)
        ========================================================================= */
-    .main-layout {
+    .app-container {
       width: 100%;
-      max-width: 1380px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 360px minmax(0, 1fr);
-      gap: 20px;
-      align-items: start;
-    }
-
-    .player-section,
-    .sidebar-card {
-      min-width: 0;
-      max-width: 100%;
+      padding: 18px;
     }
 
     .card {
@@ -330,78 +293,62 @@
     }
 
     /* =========================================================================
-       4. COLUNA LATERAL: REPERTÓRIO, BUSCA E FILTROS
+       4. TELA INICIAL (HOME): BUSCA, ABAS, PROGRESSO E GRADE DE CARDS
        ========================================================================= */
-    .sidebar-card {
-      padding: 18px;
+    .home-view {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .section-head h2 {
-      font-size: 0.96rem;
-      font-weight: 700;
-    }
-
-    .count-badge {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 3px 9px;
-      border-radius: var(--radius-pill);
-      background: var(--bg-deep);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-      flex-shrink: 0;
-    }
-
-    .search-box {
-      position: relative;
-      width: 100%;
+      gap: 16px;
       min-width: 0;
     }
 
-    .search-box svg {
+    /* Barra de Busca estilo pílula roxa (Harmony Vox) */
+    .hero-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.24), rgba(236, 72, 153, 0.16));
+      border: 1px solid rgba(139, 92, 246, 0.45);
+      box-shadow: 0 8px 28px rgba(88, 28, 135, 0.24);
+      min-width: 0;
+    }
+
+    .hero-search-inner {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-search-inner svg {
       position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
+      left: 14px;
+      color: var(--text-secondary);
       pointer-events: none;
     }
 
-    .input-field {
+    .hero-search-input {
       width: 100%;
       min-width: 0;
-      background: var(--bg-deep);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 10px 13px;
-      font-size: 0.85rem;
+      background: rgba(13, 11, 20, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-pill);
+      padding: 11px 38px 11px 40px;
+      font-size: 0.88rem;
       color: var(--text-primary);
       outline: none;
-      transition: border-color var(--transition), box-shadow var(--transition);
+      transition: border-color var(--transition);
     }
 
-    .input-field::placeholder {
-      color: var(--text-muted);
+    .hero-search-input::placeholder {
+      color: var(--text-secondary);
     }
 
-    .input-field:focus {
+    .hero-search-input:focus {
       border-color: var(--purple-fill);
-      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18);
-    }
-
-    .search-box .input-field {
-      padding-left: 38px;
-      padding-right: 34px;
     }
 
     .search-clear {
@@ -409,9 +356,9 @@
       right: 8px;
       top: 50%;
       transform: translateY(-50%);
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -419,8 +366,86 @@
     }
 
     .search-clear:hover {
-      background: var(--card-hover);
+      background: rgba(255, 255, 255, 0.08);
       color: var(--text-primary);
+    }
+
+    .btn-filter-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 15px;
+      border-radius: var(--radius-pill);
+      background: rgba(13, 11, 20, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+
+    .btn-filter-toggle:hover,
+    .btn-filter-toggle.active {
+      background: var(--purple-fill);
+      border-color: var(--purple-fill);
+      color: #fff;
+    }
+
+    /* Abas de Ordenação (Mais recentes | A → Z | Mais tocadas | Favoritas) */
+    .sort-tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px;
+      border-radius: 16px;
+      background: rgba(22, 19, 34, 0.9);
+      border: 1px solid var(--border-subtle);
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .sort-tabs-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sort-tab {
+      flex: 1 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      transition: all var(--transition);
+    }
+
+    .sort-tab:hover {
+      color: var(--text-primary);
+    }
+
+    .sort-tab.active {
+      background: rgba(139, 92, 246, 0.28);
+      border: 1px solid rgba(139, 92, 246, 0.55);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.2);
+    }
+
+    /* Painel recolhível de Filtros (Categoria, Tom, Voz) */
+    .filters-drawer {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(22, 19, 34, 0.92);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
     }
 
     .filter-block {
@@ -443,7 +468,7 @@
       display: flex;
       gap: 6px;
       overflow-x: auto;
-      padding-bottom: 4px;
+      padding-bottom: 2px;
       scrollbar-width: none;
       max-width: 100%;
       -webkit-overflow-scrolling: touch;
@@ -455,7 +480,7 @@
 
     .filter-chip {
       flex-shrink: 0;
-      padding: 5px 11px;
+      padding: 5px 12px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--border-subtle);
       background: var(--bg-deep);
@@ -488,118 +513,228 @@
       color: #fbcfe8;
     }
 
-    .song-list {
+    /* Card de Progresso ("Músicas ouvidas") */
+    .progress-widget {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(22, 19, 34, 0.92);
+      border: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
       gap: 9px;
-      max-height: 560px;
-      overflow-y: auto;
-      padding-right: 3px;
-      min-width: 0;
     }
 
-    .song-item {
-      width: 100%;
-      min-width: 0;
-      text-align: left;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 11px;
-      border-radius: var(--radius-md);
-      background: rgba(15, 14, 19, 0.7);
-      border: 1px solid var(--border-subtle);
-      transition: all var(--transition);
-    }
-
-    .song-item:hover {
-      background: var(--card-hover);
-      border-color: rgba(139, 92, 246, 0.45);
-    }
-
-    .song-item.active {
-      background: rgba(30, 227, 165, 0.08);
-      border-color: rgba(30, 227, 165, 0.58);
-      box-shadow: 0 0 0 1px rgba(30, 227, 165, 0.16);
-    }
-
-    .song-thumb {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.09);
+    .progress-widget-top {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .progress-widget-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .progress-widget-title svg {
+      color: var(--purple-fill);
+    }
+
+    .progress-widget-pct {
+      font-size: 0.84rem;
       font-weight: 800;
-      font-size: 0.9rem;
-      color: #fff;
-      position: relative;
+      color: #c084fc;
+      font-variant-numeric: tabular-nums;
     }
 
-    .song-thumb img {
+    .progress-widget-bar {
       width: 100%;
+      height: 6px;
+      border-radius: var(--radius-pill);
+      background: rgba(139, 92, 246, 0.16);
+      overflow: hidden;
+    }
+
+    .progress-widget-fill {
       height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 0%;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(90deg, var(--purple-fill), var(--hot-pink));
+      transition: width 0.35s ease;
     }
 
-    .song-item-body {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .song-item-top {
+    .progress-widget-sub {
+      font-size: 0.74rem;
+      color: var(--text-secondary);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
     }
 
-    .song-item-title {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    /* Grade de Cards de Músicas (2 colunas no celular, 3-4 no desktop) */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+      gap: 16px;
+      min-width: 0;
     }
 
-    .song-item.active .song-item-title {
-      color: var(--mint);
-    }
-
-    .key-pill {
-      flex-shrink: 0;
-      font-size: 0.69rem;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 7px;
-      background: var(--card-dark);
+    .music-card {
+      background: rgba(22, 19, 34, 0.95);
       border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      min-width: 0;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
     }
 
-    .song-item-meta {
-      font-size: 0.74rem;
-      color: var(--text-secondary);
-      margin-top: 2px;
+    .music-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(139, 92, 246, 0.6);
+      box-shadow: 0 14px 32px rgba(88, 28, 135, 0.28);
+    }
+
+    .music-card:active {
+      transform: scale(0.98);
+    }
+
+    .card-banner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #1b162a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .music-card:hover .card-banner img {
+      transform: scale(1.04);
+    }
+
+    .card-banner-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 12px;
+      position: relative;
+    }
+
+    .card-banner-fallback::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13, 11, 20, 0.1) 0%, rgba(13, 11, 20, 0.65) 100%);
+      pointer-events: none;
+    }
+
+    .card-banner-initials {
+      position: relative;
+      z-index: 1;
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+      line-height: 1.1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-badge-top {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(13, 11, 20, 0.78);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #f4f4f6;
+      font-size: 0.67rem;
+      font-weight: 700;
+    }
+
+    .card-listened-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 2;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(30, 227, 165, 0.92);
+      color: #051c14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    }
+
+    .card-content {
+      padding: 12px 13px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.25;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .voice-mini-badges {
+    .card-artist {
+      font-size: 0.77rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-voices-row {
       display: flex;
       flex-wrap: wrap;
       gap: 4px;
-      margin-top: 7px;
+      margin-top: 5px;
     }
 
     .voice-mini-badge {
-      font-size: 0.65rem;
+      font-size: 0.63rem;
       font-weight: 600;
       padding: 2px 7px;
       border-radius: var(--radius-pill);
@@ -609,23 +744,100 @@
     }
 
     .voice-mini-badge.extra {
-      background: var(--card-dark);
+      background: var(--bg-deep);
       border-color: var(--border-subtle);
       color: var(--text-secondary);
     }
 
+    .card-footer {
+      margin-top: auto;
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+    }
+
+    .card-plays {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .btn-fav {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+
+    .btn-fav:hover {
+      background: rgba(236, 72, 153, 0.14);
+      color: var(--hot-pink);
+    }
+
+    .btn-fav.active {
+      color: var(--hot-pink);
+    }
+
     .empty-state {
-      padding: 26px 14px;
+      grid-column: 1 / -1;
+      padding: 36px 16px;
       text-align: center;
       border: 1px dashed var(--border-strong);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       color: var(--text-secondary);
-      font-size: 0.82rem;
+      font-size: 0.86rem;
+      background: rgba(22, 19, 34, 0.5);
     }
 
     /* =========================================================================
-       5. ÁREA PRINCIPAL: PLAYER MULTIFAIXA
+       5. TELA DO PLAYER MULTIFAIXA (ABERTA AO CLICAR NO CARD)
        ========================================================================= */
+    .player-view {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .player-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 15px;
+      border-radius: var(--radius-pill);
+      background: var(--card-dark);
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: all var(--transition);
+    }
+
+    .btn-back-home:hover {
+      background: var(--card-hover);
+      border-color: var(--mint);
+      color: var(--mint);
+    }
+
     .player-card {
       padding: 24px;
       display: flex;
@@ -653,12 +865,12 @@
     }
 
     .player-cover {
-      width: 74px;
-      height: 74px;
+      width: 78px;
+      height: 78px;
       border-radius: 16px;
       overflow: hidden;
       flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -950,7 +1162,7 @@
       gap: 12px;
       padding: 14px;
       border-radius: var(--radius-md);
-      background: rgba(15, 14, 19, 0.75);
+      background: rgba(13, 11, 20, 0.75);
       border: 1px solid var(--border-subtle);
       min-width: 0;
       max-width: 100%;
@@ -977,6 +1189,17 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--text-secondary);
+    }
+
+    .count-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-deep);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      flex-shrink: 0;
     }
 
     .ab-badge {
@@ -1029,7 +1252,7 @@
       color: #e9d5ff;
     }
 
-    /* Mixer de Vozes (Pílulas Harmony Vox + Mute + Solo + Volume Individual) */
+    /* Mixer de Vozes */
     .mixer-wrapper {
       min-width: 0;
       max-width: 100%;
@@ -1050,7 +1273,7 @@
     }
 
     .mixer-header h3 {
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       font-weight: 700;
     }
 
@@ -1083,7 +1306,7 @@
     }
 
     .track-card.muted {
-      background: rgba(22, 21, 29, 0.85);
+      background: rgba(22, 19, 34, 0.85);
       border-color: var(--border-subtle);
       opacity: 0.62;
     }
@@ -1147,12 +1370,13 @@
       flex-shrink: 0;
     }
 
-    .btn-solo {
+    .btn-solo,
+    .btn-mute {
       width: 28px;
       height: 28px;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(15, 14, 19, 0.55);
+      background: rgba(13, 11, 20, 0.55);
       color: var(--text-secondary);
       font-size: 0.72rem;
       font-weight: 800;
@@ -1171,21 +1395,6 @@
       background: var(--mint);
       border-color: var(--mint);
       color: #061c15;
-    }
-
-    .btn-mute {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(15, 14, 19, 0.55);
-      color: var(--text-secondary);
-      font-size: 0.72rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition);
     }
 
     .btn-mute:hover {
@@ -1273,19 +1482,72 @@
     }
 
     /* =========================================================================
-       6. MODAIS (+ NOVA MÚSICA / EDITAR, CATÁLOGO JSON, CONFIRMAÇÃO)
+       6. RODAPÉ & MODAIS
        ========================================================================= */
+    .app-footer {
+      max-width: 1200px;
+      margin: 12px auto 26px;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .footer-lock-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      opacity: 0.6;
+      transition: all var(--transition);
+    }
+
+    .footer-lock-btn:hover,
+    .footer-lock-btn.active {
+      opacity: 1;
+      background: var(--card-dark);
+      color: var(--mint);
+    }
+
+    .input-field {
+      width: 100%;
+      min-width: 0;
+      background: var(--bg-deep);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 13px;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .input-field::placeholder {
+      color: var(--text-muted);
+    }
+
+    .input-field:focus {
+      border-color: var(--purple-fill);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18);
+    }
+
     .modal-backdrop {
       position: fixed;
       inset: 0;
       z-index: 60;
-      background: rgba(5, 5, 9, 0.78);
+      background: rgba(5, 5, 9, 0.8);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 14px;
     }
 
     .modal-box {
@@ -1382,10 +1644,69 @@
       color: var(--text-secondary);
     }
 
+    /* Bloco de Upload da Capa do Card */
+    .cover-upload-box {
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: rgba(13, 11, 20, 0.72);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .cover-preview-thumb {
+      width: 128px;
+      height: 80px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--border-strong);
+      background: linear-gradient(135deg, #6d28d9, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 6px;
+    }
+
+    .cover-preview-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cover-upload-controls {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cover-upload-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
     .voice-picker-box {
       padding: 16px;
       border-radius: var(--radius-md);
-      background: rgba(15, 14, 19, 0.7);
+      background: rgba(13, 11, 20, 0.7);
       border: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
@@ -1623,7 +1944,7 @@
       font-weight: 600;
       padding: 2px 8px;
       border-radius: var(--radius-pill);
-      background: rgba(15, 14, 19, 0.65);
+      background: rgba(13, 11, 20, 0.65);
       border: 1px solid var(--border-subtle);
       color: var(--text-secondary);
     }
@@ -1656,7 +1977,6 @@
       border-color: var(--purple-fill);
     }
 
-    /* Toast flutuante */
     .toast-container {
       position: fixed;
       right: 14px;
@@ -1700,36 +2020,42 @@
     }
 
     /* =========================================================================
-       7. RESPONSIVIDADE (TABLET & MOBILE)
+       7. RESPONSIVIDADE (MOBILE 2 COLUNAS DE CARDS + PLAYER SEM CORTES)
        ========================================================================= */
-    @media (max-width: 1024px) {
-      .main-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      /* Em telas menores, coloca o Player no topo e o Repertório logo abaixo */
-      .player-section {
-        order: -1;
-      }
-      .song-list {
-        max-height: 360px;
-      }
-    }
-
     @media (max-width: 680px) {
       .header-inner {
-        padding: 12px 14px;
+        padding: 10px 14px;
       }
-      .main-layout {
+      .app-container {
         padding: 12px;
-        gap: 14px;
       }
-      .player-card, .sidebar-card {
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .card-content {
+        padding: 10px;
+      }
+      .card-title {
+        font-size: 0.85rem;
+      }
+      .card-artist {
+        font-size: 0.72rem;
+      }
+      .card-footer {
+        padding-top: 8px;
+        font-size: 0.69rem;
+      }
+      .card-banner-initials {
+        font-size: 1.02rem;
+      }
+      .player-card {
         padding: 14px;
         gap: 16px;
       }
       .player-cover {
-        width: 58px;
-        height: 58px;
+        width: 60px;
+        height: 60px;
         font-size: 1.15rem;
         border-radius: 13px;
       }
@@ -1764,6 +2090,9 @@
         padding: 6px 9px;
         font-size: 0.72rem;
       }
+      .modal-body, .modal-header, .modal-footer {
+        padding: 14px 16px;
+      }
       .toast-container {
         align-items: stretch;
       }
@@ -1778,9 +2107,9 @@
   <!-- CABEÇALHO -->
   <header class="app-header">
     <div class="header-inner">
-      <div class="brand">
+      <button id="btnBrandHome" type="button" class="brand" title="Voltar para o Repertório">
         <div class="brand-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 18V5l12-2v13"></path>
             <circle cx="6" cy="18" r="3"></circle>
             <circle cx="18" cy="16" r="3"></circle>
@@ -1788,12 +2117,12 @@
         </div>
         <div class="brand-text">
           <h1>PIB Ceres · Divisões Vocais</h1>
-          <p>Primeira Igreja Batista de Ceres · Estudo Multifaixa</p>
+          <p>Primeira Igreja Batista de Ceres</p>
         </div>
-      </div>
+      </button>
 
       <div class="header-actions">
-        <span id="cloudStatusBadge" class="cloud-badge">Conectando à nuvem...</span>
+        <span id="cloudStatusBadge" class="cloud-badge">Conectando...</span>
         <span id="adminModeBadge" class="admin-badge hidden">Modo Admin</span>
         <button id="btnShareLink" type="button" class="btn btn-secondary btn-sm" title="Copiar link limpo para enviar aos cantores">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
@@ -1805,7 +2134,7 @@
           </svg>
           Compartilhar
         </button>
-        <button id="btnQuickExportJson" type="button" class="btn btn-secondary btn-sm hidden" title="Baixar catalogo.json pronto para subir no GitHub Pages">
+        <button id="btnQuickExportJson" type="button" class="btn btn-secondary btn-sm hidden" title="Baixar catalogo.json">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -1831,52 +2160,130 @@
     </div>
   </header>
 
-  <!-- GRADE PRINCIPAL -->
-  <main class="main-layout">
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="app-container">
 
-    <!-- COLUNA LATERAL: REPERTÓRIO -->
-    <aside class="card sidebar-card" aria-label="Repertório de músicas">
-      <div class="section-head">
-        <h2>Repertório</h2>
-        <span id="songCountBadge" class="count-badge">0 músicas</span>
-      </div>
+    <!-- =======================================================================
+         VISTA 1: PÁGINA INICIAL EM FORMATO DE CARDS (REPERTÓRIO)
+         ======================================================================= -->
+    <section id="homeView" class="home-view" aria-label="Repertório de músicas">
 
-      <div class="search-box">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input id="searchInput" type="text" class="input-field" placeholder="Buscar música, ministério ou tag..." />
-        <button id="btnClearSearch" type="button" class="search-clear hidden" aria-label="Limpar busca">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
+      <!-- Barra de Busca estilo pílula roxa -->
+      <div class="hero-search-bar">
+        <div class="hero-search-inner">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
+          <input id="searchInput" type="text" class="hero-search-input" placeholder="Buscar por título, ministério ou voz..." />
+          <button id="btnClearSearch" type="button" class="search-clear hidden" aria-label="Limpar busca">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <button id="btnToggleFilters" type="button" class="btn-filter-toggle" title="Filtrar por Categoria, Tom ou Voz">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+          </svg>
+          <span>Filtros</span>
         </button>
       </div>
 
-      <div class="filter-block">
-        <span class="filter-label">Categoria</span>
-        <div id="categoryFilterRow" class="chip-scroll"></div>
+      <!-- Abas de ordenação -->
+      <div id="sortTabsBar" class="sort-tabs-bar" role="tablist">
+        <button type="button" class="sort-tab active" data-sort="recent">Mais recentes</button>
+        <button type="button" class="sort-tab" data-sort="az">A → Z</button>
+        <button type="button" class="sort-tab" data-sort="plays">Mais tocadas</button>
+        <button type="button" class="sort-tab" data-sort="favorites">Favoritas</button>
       </div>
 
-      <div class="filter-block">
-        <span class="filter-label">Tom Musical</span>
-        <div id="keyFilterRow" class="chip-scroll"></div>
+      <!-- Gaveta de filtros detalhados (Categoria, Tom, Voz) -->
+      <div id="filtersDrawer" class="filters-drawer hidden">
+        <div class="filter-block">
+          <span class="filter-label">Categoria</span>
+          <div id="categoryFilterRow" class="chip-scroll"></div>
+        </div>
+        <div class="filter-block">
+          <span class="filter-label">Tom Musical</span>
+          <div id="keyFilterRow" class="chip-scroll"></div>
+        </div>
+        <div class="filter-block">
+          <span class="filter-label">Voz Disponível</span>
+          <div id="voiceFilterRow" class="chip-scroll"></div>
+        </div>
       </div>
 
-      <div class="filter-block">
-        <span class="filter-label">Voz Disponível</span>
-        <div id="voiceFilterRow" class="chip-scroll"></div>
+      <!-- Barra de Progresso: Músicas ouvidas -->
+      <div class="progress-widget">
+        <div class="progress-widget-top">
+          <span class="progress-widget-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18V5l12-2v13"></path>
+              <circle cx="6" cy="18" r="3"></circle>
+              <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+            Músicas ouvidas
+          </span>
+          <span id="listenedPctLabel" class="progress-widget-pct">0%</span>
+        </div>
+        <div class="progress-widget-bar">
+          <div id="listenedProgressFill" class="progress-widget-fill"></div>
+        </div>
+        <div class="progress-widget-sub">
+          <span id="listenedCountLabel">0 de 0 músicas ouvidas</span>
+          <span id="songCountBadge">0 músicas</span>
+        </div>
       </div>
 
-      <div id="songListContainer" class="song-list"></div>
-    </aside>
+      <!-- Grade de Cards -->
+      <div id="cardsGridContainer" class="cards-grid"></div>
+    </section>
 
-    <!-- ÁREA PRINCIPAL: PLAYER MULTIFAIXA -->
-    <section class="player-section" aria-label="Player Multifaixa">
+    <!-- =======================================================================
+         VISTA 2: PLAYER MULTIFAIXA (ABERTA AO CLICAR EM UM CARD)
+         ======================================================================= -->
+    <section id="playerView" class="player-view hidden" aria-label="Player Multifaixa">
+
+      <!-- Barra superior de navegação (Voltar + Ações Admin) -->
+      <div class="player-topbar">
+        <button id="btnBackToHome" type="button" class="btn-back-home">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Voltar ao Repertório
+        </button>
+
+        <div class="player-header-actions">
+          <button id="btnPlayerFav" type="button" class="btn btn-secondary btn-sm" title="Favoritar esta música">
+            <svg id="playerFavIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span id="playerFavText">Favoritar</span>
+          </button>
+          <button id="btnEditSong" type="button" class="btn btn-secondary btn-sm hidden" title="Editar esta música">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            Editar
+          </button>
+          <button id="btnDeleteSong" type="button" class="btn btn-danger btn-sm hidden" title="Excluir esta música">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+              <path d="M10 11v6"></path>
+              <path d="M14 11v6"></path>
+            </svg>
+            Excluir
+          </button>
+        </div>
+      </div>
+
       <div class="card player-card">
-
         <!-- Cabeçalho da Música Atual -->
         <div class="player-header">
           <div class="player-song-info">
@@ -1892,25 +2299,6 @@
               </div>
               <div id="playerModeBadge" class="mode-pill">Demo Interativa</div>
             </div>
-          </div>
-
-          <div class="player-header-actions">
-            <button id="btnEditSong" type="button" class="btn btn-secondary btn-sm hidden" title="Editar esta música">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 20h9"></path>
-                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-              </svg>
-              Editar
-            </button>
-            <button id="btnDeleteSong" type="button" class="btn btn-danger btn-sm hidden" title="Excluir esta música">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
-                <path d="M10 11v6"></path>
-                <path d="M14 11v6"></path>
-              </svg>
-              Excluir
-            </button>
           </div>
         </div>
 
@@ -1997,7 +2385,6 @@
 
           <div id="tracksGrid" class="tracks-grid" style="margin-top: 14px;"></div>
         </div>
-
       </div>
     </section>
   </main>
@@ -2020,7 +2407,7 @@
       <div class="modal-header">
         <div>
           <h3 id="songModalTitle">Adicionar Nova Música</h3>
-          <p>Escolha as vozes que fazem parte desta divisão vocal e anexe os arquivos ou URLs de áudio.</p>
+          <p>Cadastre a imagem do card, selecione as vozes e vincule os áudios da música.</p>
         </div>
         <button id="btnCloseSongModal" type="button" class="modal-close" aria-label="Fechar">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
@@ -2035,12 +2422,12 @@
           <div class="form-grid">
             <div class="form-field">
               <label for="inputTitle">Título da Música *</label>
-              <input id="inputTitle" type="text" class="input-field" placeholder="Ex: Agnus Dei" required />
+              <input id="inputTitle" type="text" class="input-field" placeholder="Ex: Quebrantado" required />
             </div>
 
             <div class="form-field">
               <label for="inputArtist">Ministério / Artista *</label>
-              <input id="inputArtist" type="text" class="input-field" placeholder="Ex: PIB Ceres Worship" required />
+              <input id="inputArtist" type="text" class="input-field" placeholder="Ex: Vineyard" required />
             </div>
 
             <div class="form-field">
@@ -2061,17 +2448,36 @@
 
             <div class="form-field">
               <label for="inputDuration">Duração estimada em seg. (opcional)</label>
-              <input id="inputDuration" type="number" min="10" max="1200" class="input-field" placeholder="Ex: 240 (detectado automaticamente no áudio)" />
+              <input id="inputDuration" type="number" min="10" max="1200" class="input-field" placeholder="Detectado automaticamente no áudio" />
             </div>
 
             <div class="form-field">
               <label for="inputTags">Tags para busca (separadas por vírgula)</label>
-              <input id="inputTags" type="text" class="input-field" placeholder="Ex: domingo, ceia, refrão, coral" />
+              <input id="inputTags" type="text" class="input-field" placeholder="Ex: domingo, ceia, refrão" />
             </div>
 
+            <!-- Imagem do Card (Upload direto para a nuvem ou URL) -->
             <div class="form-field full">
-              <label for="inputCoverUrl">URL da Capa (opcional)</label>
-              <input id="inputCoverUrl" type="url" class="input-field" placeholder="https://..." />
+              <label>Imagem de Capa do Card (salva automaticamente na nuvem)</label>
+              <div class="cover-upload-box">
+                <div id="coverPreviewThumb" class="cover-preview-thumb">Sem imagem</div>
+                <div class="cover-upload-controls">
+                  <div class="cover-upload-actions">
+                    <label class="btn btn-primary btn-sm" style="cursor: pointer;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
+                      </svg>
+                      Enviar Imagem
+                      <input id="inputCoverFile" type="file" accept="image/*" class="hidden" />
+                    </label>
+                    <button id="btnRemoveCover" type="button" class="btn btn-danger btn-sm hidden">Remover</button>
+                  </div>
+                  <input id="inputCoverUrl" type="text" class="input-field" placeholder="Ou cole uma URL / caminho (ex: https://... ou audios/musica/capa.jpg)" style="padding: 8px 11px; font-size: 0.78rem;" />
+                  <span style="font-size: 0.7rem; color: var(--text-muted);">A imagem enviada é otimizada automaticamente e exibida no card para todos os cantores.</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2080,7 +2486,7 @@
             <div class="section-head">
               <div>
                 <h4 style="font-size: 0.9rem; font-weight: 700;">1. Selecione as Divisões Vocais</h4>
-                <p style="font-size: 0.74rem; color: var(--text-secondary);">Somente as vozes selecionadas serão exibidas no player para estudo.</p>
+                <p style="font-size: 0.74rem; color: var(--text-secondary);">Somente as vozes selecionadas serão exibidas no player.</p>
               </div>
               <span id="selectedVoicesCounter" class="voice-mini-badge">0 selecionadas</span>
             </div>
@@ -2105,10 +2511,9 @@
           <div>
             <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 4px;">2. Áudios e Ordem no Player</h4>
             <p style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 10px;">
-              Use ↑ e ↓ para ordenar. Anexe arquivos locais (salvos neste navegador) ou informe o caminho publicado no GitHub Pages.
+              Use ↑ e ↓ para ordenar. Anexe arquivos locais ou informe o caminho publicado no GitHub Pages.
             </p>
 
-            <!-- Assistente de caminhos para GitHub Pages -->
             <div class="github-helper-box" style="margin-bottom: 12px;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
                 <span class="voice-group-title" style="margin: 0; color: #ddd6fe;">Pasta dos áudios no GitHub Pages</span>
@@ -2212,10 +2617,34 @@
       const firebaseConfig = typeof __firebase_config !== 'undefined'
         ? JSON.parse(__firebase_config)
         : PRODUCTION_FIREBASE_CONFIG;
+
       let db = null;
       let auth = null;
       let currentUser = null;
       let unsubscribeCloud = null;
+
+      const LS_FAVS_KEY = 'pib_ceres_favorites_v1';
+      const LS_LISTENED_KEY = 'pib_ceres_listened_v1';
+
+      function loadStringSet(key) {
+        try {
+          const raw = localStorage.getItem(key);
+          const arr = raw ? JSON.parse(raw) : [];
+          return new Set(Array.isArray(arr) ? arr : []);
+        } catch (e) {
+          return new Set();
+        }
+      }
+
+      function saveStringSet(key, set) {
+        try {
+          localStorage.setItem(key, JSON.stringify(Array.from(set)));
+        } catch (e) {}
+      }
+
+      const favoriteIds = loadStringSet(LS_FAVS_KEY);
+      const listenedIds = loadStringSet(LS_LISTENED_KEY);
+      const sessionPlayedSet = new Set();
 
       const SPEEDS = [0.5, 0.75, 0.85, 1.0, 1.15, 1.25];
       const CATEGORIES = ['Todos', 'Adoração', 'Celebração', 'Júbilo', 'Ceia', 'Especial'];
@@ -2292,6 +2721,32 @@
           .replace(/^-+|-+$/g, '') || 'faixa';
       }
 
+      /* Comprime imagem enviada para Base64 leve (cabe facilmente no Firestore) */
+      function compressImageFile(file, maxWidth, quality) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = () => reject(new Error('Falha ao ler imagem'));
+          reader.onload = () => {
+            const img = new Image();
+            img.onerror = () => reject(new Error('Arquivo de imagem inválido'));
+            img.onload = () => {
+              const scale = Math.min(1, (maxWidth || 560) / img.width);
+              const w = Math.max(1, Math.round(img.width * scale));
+              const h = Math.max(1, Math.round(img.height * scale));
+              const canvas = document.createElement('canvas');
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, w, h);
+              const dataUrl = canvas.toDataURL('image/jpeg', quality || 0.78);
+              resolve(dataUrl);
+            };
+            img.src = reader.result;
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
       /* =======================================================================
          1.1 PERSISTÊNCIA LOCAL DE ÁUDIOS (INDEXEDDB)
          ======================================================================= */
@@ -2330,7 +2785,6 @@
               tx.onerror = () => reject(tx.error);
             });
           } catch (err) {
-            console.warn('Erro ao salvar áudio no IndexedDB:', err);
             return false;
           }
         },
@@ -2345,7 +2799,6 @@
               req.onerror = () => reject(req.error);
             });
           } catch (err) {
-            console.warn('Erro ao ler áudio do IndexedDB:', err);
             return null;
           }
         },
@@ -2360,7 +2813,6 @@
               tx.onerror = () => reject(tx.error);
             });
           } catch (err) {
-            console.warn('Erro ao remover áudio do IndexedDB:', err);
             return false;
           }
         }
@@ -2398,6 +2850,19 @@
           return '<img src="' + escapeHtml(song.coverUrl) + '" alt="Capa de ' + escapeHtml(song.title) + '" onerror="this.style.display=\'none\';this.parentElement.style.background=\'' + grad + '\';this.parentElement.textContent=\'' + initials + '\';" />';
         }
         return '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:' + grad + ';">' + initials + '</div>';
+      }
+
+      function renderCardBannerMarkup(song) {
+        const grad = getGradientForId(song.id);
+        const safeTitle = escapeHtml(song.title);
+        if (song.coverUrl) {
+          return '<img src="' + escapeHtml(song.coverUrl) + '" alt="Capa de ' + safeTitle + '" loading="lazy" onerror="this.remove();" />';
+        }
+        return (
+          '<div class="card-banner-fallback" style="background:' + grad + ';">' +
+            '<span class="card-banner-initials">' + safeTitle + '</span>' +
+          '</div>'
+        );
       }
 
       function showToast(message, type) {
@@ -2479,6 +2944,7 @@
           key: 'E',
           category: 'Adoração',
           duration: 16,
+          plays: 0,
           tags: ['adoração', 'aleluia', 'ceia', 'clássico'],
           isDemo: true,
           coverUrl: '',
@@ -2496,6 +2962,7 @@
           key: 'G',
           category: 'Adoração',
           duration: 16,
+          plays: 0,
           tags: ['santo', 'adoração', 'coral', 'mezzo', 'barítono'],
           isDemo: true,
           coverUrl: '',
@@ -2515,6 +2982,7 @@
           key: 'A',
           category: 'Celebração',
           duration: 16,
+          plays: 0,
           tags: ['bondade', 'gratidão', 'celebração', 'baixo', 'lead'],
           isDemo: true,
           coverUrl: '',
@@ -2534,7 +3002,7 @@
       }
 
       /* =======================================================================
-         2.1 SINCRONIZAÇÃO NA NUVEM (CATÁLOGO COMPARTILHADO EM TEMPO REAL)
+         2.1 SINCRONIZAÇÃO NA NUVEM (FIRESTORE EM TEMPO REAL)
          ======================================================================= */
       function serializeSongForCloud(song) {
         return {
@@ -2544,6 +3012,7 @@
           key: String(song.key || 'C'),
           category: String(song.category || 'Adoração'),
           duration: Number(song.duration) || 180,
+          plays: Number(song.plays) || 0,
           tags: Array.isArray(song.tags) ? song.tags.map(String) : [],
           isDemo: Boolean(song.isDemo),
           coverUrl: song.coverUrl && !String(song.coverUrl).startsWith('blob:') ? String(song.coverUrl) : '',
@@ -2570,7 +3039,7 @@
 
       async function initCloudConnection() {
         if (!firebaseConfig) {
-          updateCloudStatus('offline', 'Nuvem indisponível (modo arquivo)');
+          updateCloudStatus('offline', 'Modo local');
           return false;
         }
         try {
@@ -2590,7 +3059,7 @@
           return true;
         } catch (err) {
           console.warn('Falha ao conectar na nuvem:', err);
-          updateCloudStatus('offline', 'Sem conexão com a nuvem');
+          updateCloudStatus('offline', 'Sem conexão');
           return false;
         }
       }
@@ -2647,17 +3116,19 @@
 
             await hydrateLocalAudios(catalog);
 
-            const stillExists = catalog.some((s) => s.id === currentSongId);
-            if (!stillExists) {
-              currentSongId = catalog[0] ? catalog[0].id : null;
-            }
-
             renderFilters();
-            renderSongList();
+            renderHomeCards();
 
-            const currentInEngine = engine.currentSong && engine.currentSong.id === currentSongId;
-            if (!currentInEngine || !engine.isPlaying) {
-              selectSong(currentSongId);
+            if (currentView === 'player') {
+              const stillExists = catalog.some((s) => s.id === currentSongId);
+              if (!stillExists) {
+                showHomeView();
+              } else if (!engine.isPlaying) {
+                const updated = catalog.find((s) => s.id === currentSongId);
+                if (updated) {
+                  updatePlayerHeaderMeta(updated);
+                }
+              }
             }
           },
           (error) => {
@@ -2675,6 +3146,7 @@
           key: song.key,
           category: song.category,
           duration: song.duration || 180,
+          plays: Number(song.plays) || 0,
           tags: song.tags || [],
           isDemo: Boolean(song.isDemo),
           coverUrl: song.coverUrl && song.coverUrl.startsWith('blob:') ? '' : (song.coverUrl || ''),
@@ -2700,15 +3172,11 @@
         a.click();
         a.remove();
         URL.revokeObjectURL(url);
-        showToast('catalogo.json baixado! Suba na raiz do repositório GitHub.', 'success');
+        showToast('catalogo.json baixado!', 'success');
       }
 
       /* =======================================================================
-         3. MOTOR DE ÁUDIO MULTIFAIXA (WEB AUDIO BUFFER SAMPLE-ACCURATE + PITCH)
-         - Em 1.0x: usa AudioBufferSourceNode + GainNode (sincronia de 0ms, zero
-           picotes ao mexer nos sliders, funciona perfeitamente no Android e iOS).
-         - Em velocidades != 1.0x: usa os mesmos arquivos já em RAM (Blob URL)
-           com preservesPitch = true, roteados para GainNode e resync suave.
+         3. MOTOR DE ÁUDIO MULTIFAIXA (WEB AUDIO BUFFER 0ms SYNC + PITCH)
          ======================================================================= */
       class MultiTrackEngine {
         constructor(onTimeUpdate, onPlayStateChange, onLoadingChange) {
@@ -2719,27 +3187,24 @@
           this.ctx = null;
           this.masterGain = null;
 
-          // Demo Web Audio
           this.demoTrackGains = {};
           this.demoActiveNodes = [];
           this.lastDemoStepIdx = -1;
 
-          // Motor Real (Web Audio Buffer + Blob RAM)
-          this.bufferCache = new Map(); // trackSrc -> { audioBuffer, blobUrl }
-          this.loadedTracks = {};       // trackId -> { audioBuffer, blobUrl, directUrl }
-          this.bufferGains = {};        // trackId -> GainNode
-          this.activeSources = [];      // AudioBufferSourceNode[]
+          this.bufferCache = new Map();
+          this.loadedTracks = {};
+          this.bufferGains = {};
+          this.activeSources = [];
           this.bufferStartCtxTime = 0;
           this.bufferStartOffset = 0;
 
-          // Fallback / Velocidade != 1.0x (HTMLAudioElement a partir de RAM + GainNode)
-          this.audioElements = {};      // trackId -> HTMLAudioElement
-          this.mediaElementGains = {};  // trackId -> GainNode
-          this.lastResyncAt = {};       // trackId -> timestamp ms
+          this.audioElements = {};
+          this.mediaElementGains = {};
+          this.lastResyncAt = {};
 
           this.currentSong = null;
-          this.mode = 'demo';           // 'demo' | 'real'
-          this.activeRealBackend = 'buffer'; // 'buffer' | 'media'
+          this.mode = 'demo';
+          this.activeRealBackend = 'buffer';
           this.loadSeq = 0;
           this.isLoading = false;
           this.loadPromise = null;
@@ -2863,7 +3328,6 @@
           const total = tracksWithSrc.length;
           this.onLoadingChange(true, 'Preparando faixas (0/' + total + ')...');
 
-          // Cria AudioContext apenas para decodeAudioData se já não existir
           const AudioCtx = window.AudioContext || window.webkitAudioContext;
           if (!this.ctx) {
             this.ctx = new AudioCtx();
@@ -2885,7 +3349,6 @@
                   const arrayBuf = await response.arrayBuffer();
                   const blob = new Blob([arrayBuf], { type: response.headers.get('content-type') || 'audio/mpeg' });
                   const blobUrl = URL.createObjectURL(blob);
-                  // slice(0) evita erro de detached ArrayBuffer
                   const audioBuffer = await this.ctx.decodeAudioData(arrayBuf.slice(0));
                   cached = { audioBuffer, blobUrl };
                   this.bufferCache.set(src, cached);
@@ -2950,12 +3413,10 @@
                 gainNode.gain.setTargetAtTime(g, now, 0.015);
               }
             } else {
-              // GainNode do modo AudioBuffer (1.0x)
               const bufGain = this.bufferGains[t.id];
               if (bufGain && this.ctx) {
                 bufGain.gain.setTargetAtTime(g, now, 0.015);
               }
-              // GainNode ou volume do modo MediaElement (velocidade != 1.0x ou fallback CORS)
               const mediaGain = this.mediaElementGains[t.id];
               if (mediaGain && this.ctx) {
                 mediaGain.gain.setTargetAtTime(g, now, 0.015);
@@ -3007,9 +3468,7 @@
         }
 
         setLoopB() {
-          if (this.loopA === null) {
-            this.loopA = 0;
-          }
+          if (this.loopA === null) this.loopA = 0;
           if (this.currentTime <= this.loopA + 0.3) {
             showToast('O ponto B precisa estar depois do ponto A.', 'error');
             return false;
@@ -3026,7 +3485,7 @@
 
         startBufferPlayback(offsetSec) {
           this.stopBufferSources();
-          const startCtxTime = this.ctx.currentTime + 0.04; // 40ms de folga garante sincronia perfeita
+          const startCtxTime = this.ctx.currentTime + 0.04;
           this.bufferStartCtxTime = startCtxTime;
           this.bufferStartOffset = offsetSec;
 
@@ -3054,7 +3513,6 @@
         }
 
         async startMediaPlayback(offsetSec) {
-          // Cria elementos a partir do Blob em RAM (sem rede!) quando disponível
           const tracks = this.currentSong.tracks || [];
           const readyPromises = [];
 
@@ -3074,7 +3532,6 @@
               el.webkitPreservesPitch = true;
               el.playbackRate = this.playbackRate;
 
-              // Roteia pelo GainNode para volume suave sem picote (e funciona no iOS!)
               try {
                 const mediaSrc = this.ctx.createMediaElementSource(el);
                 const gn = this.ctx.createGain();
@@ -3099,9 +3556,7 @@
             }
           });
 
-          if (readyPromises.length > 0) {
-            await Promise.all(readyPromises);
-          }
+          if (readyPromises.length > 0) await Promise.all(readyPromises);
 
           this.applyAllGains();
           const els = Object.values(this.audioElements);
@@ -3137,10 +3592,10 @@
             this.triggerDemoStepForTime(this.currentTime, true);
             this.startLoop();
             this.onPlayStateChange(true);
+            recordSongPlay(this.currentSong);
             return;
           }
 
-          // Modo Real
           await this.ensureAudioContext();
 
           if (this.isLoading && this.loadPromise) {
@@ -3167,6 +3622,7 @@
           this.lastFrameTs = performance.now();
           this.startLoop();
           this.onPlayStateChange(true);
+          recordSongPlay(this.currentSong);
         }
 
         pause() {
@@ -3226,7 +3682,6 @@
               if (entries.length > 0) {
                 const [, masterEl] = entries[0];
                 this.currentTime = masterEl.currentTime;
-                // Ressincronização inteligente com cooldown (evita picotes)
                 entries.forEach(([trkId, el]) => {
                   if (el === masterEl || el.seeking || el.readyState < 3) return;
                   const drift = Math.abs(el.currentTime - this.currentTime);
@@ -3239,7 +3694,6 @@
               }
             }
 
-            // Verifica repetição A-B
             if (this.loopA !== null && this.loopB !== null && this.currentTime >= this.loopB) {
               this.seek(this.loopA);
             } else if (this.currentTime >= this.duration) {
@@ -3377,8 +3831,10 @@
          4. ESTADO DA APLICAÇÃO & REFERÊNCIAS DOM
          ======================================================================= */
       let catalog = cloneDeep(DEFAULT_SONGS);
-      let currentSongId = catalog[0] ? catalog[0].id : null;
+      let currentView = 'home'; // 'home' | 'player'
+      let currentSongId = null;
       let searchQuery = '';
+      let sortMode = 'recent'; // 'recent' | 'az' | 'plays' | 'favorites'
       let selectedCategory = 'Todos';
       let selectedKey = 'Todos';
       let selectedVoice = 'Todas';
@@ -3386,6 +3842,11 @@
 
       const urlParams = new URLSearchParams(window.location.search);
       let isAdminMode = urlParams.get('admin') === '1';
+
+      const elHomeView = document.getElementById('homeView');
+      const elPlayerView = document.getElementById('playerView');
+      const elBtnBrandHome = document.getElementById('btnBrandHome');
+      const elBtnBackToHome = document.getElementById('btnBackToHome');
 
       const elAdminModeBadge = document.getElementById('adminModeBadge');
       const elBtnShareLink = document.getElementById('btnShareLink');
@@ -3397,13 +3858,19 @@
       const elBtnToggleAdminLock = document.getElementById('btnToggleAdminLock');
       const elFooterLockLabel = document.getElementById('footerLockLabel');
 
-      const elSongCountBadge = document.getElementById('songCountBadge');
       const elSearchInput = document.getElementById('searchInput');
       const elBtnClearSearch = document.getElementById('btnClearSearch');
+      const elBtnToggleFilters = document.getElementById('btnToggleFilters');
+      const elFiltersDrawer = document.getElementById('filtersDrawer');
+      const elSortTabsBar = document.getElementById('sortTabsBar');
       const elCategoryFilterRow = document.getElementById('categoryFilterRow');
       const elKeyFilterRow = document.getElementById('keyFilterRow');
       const elVoiceFilterRow = document.getElementById('voiceFilterRow');
-      const elSongListContainer = document.getElementById('songListContainer');
+      const elCardsGridContainer = document.getElementById('cardsGridContainer');
+      const elSongCountBadge = document.getElementById('songCountBadge');
+      const elListenedPctLabel = document.getElementById('listenedPctLabel');
+      const elListenedProgressFill = document.getElementById('listenedProgressFill');
+      const elListenedCountLabel = document.getElementById('listenedCountLabel');
 
       const elPlayerCover = document.getElementById('playerCover');
       const elPlayerTitle = document.getElementById('playerTitle');
@@ -3411,6 +3878,9 @@
       const elPlayerKey = document.getElementById('playerKey');
       const elPlayerCategory = document.getElementById('playerCategory');
       const elPlayerModeBadge = document.getElementById('playerModeBadge');
+      const elBtnPlayerFav = document.getElementById('btnPlayerFav');
+      const elPlayerFavIcon = document.getElementById('playerFavIcon');
+      const elPlayerFavText = document.getElementById('playerFavText');
 
       const elBtnPlayPause = document.getElementById('btnPlayPause');
       const elIconPlay = document.getElementById('iconPlay');
@@ -3452,7 +3922,233 @@
       }
 
       /* =======================================================================
-         5. RENDERIZAÇÃO DO PLAYER, BARRA A-B, VELOCIDADE E MIXER
+         5. NAVEGAÇÃO ENTRE HOME (CARDS) E PLAYER
+         ======================================================================= */
+      function showHomeView() {
+        engine.pause();
+        currentView = 'home';
+        elPlayerView.classList.add('hidden');
+        elHomeView.classList.remove('hidden');
+        renderHomeCards();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function openSongPlayer(songId) {
+        const song = catalog.find((s) => s.id === songId);
+        if (!song) return;
+
+        currentSongId = song.id;
+        currentView = 'player';
+        elHomeView.classList.add('hidden');
+        elPlayerView.classList.remove('hidden');
+
+        updatePlayerHeaderMeta(song);
+        engine.loadSong(song);
+
+        updateABUI();
+        renderSpeedButtons();
+        renderTracksMixer();
+        updatePlayerFavButton();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function updatePlayerHeaderMeta(song) {
+        const hasLocal = (song.tracks || []).some((t) => t.localObjectUrl);
+        const hasOnline = (song.tracks || []).some((t) => t.audioUrl);
+        defaultPlayerModeText = song.isDemo
+          ? 'Demo Interativa · ' + song.tracks.length + ' faixas'
+          : hasOnline && hasLocal
+            ? 'Online + Local · ' + song.tracks.length + ' faixas'
+            : hasOnline
+              ? 'Áudio Online (Sincronizado) · ' + song.tracks.length + ' faixas'
+              : hasLocal
+                ? 'Áudio Local (neste navegador) · ' + song.tracks.length + ' faixas'
+                : 'Sem áudio vinculado · ' + song.tracks.length + ' faixas';
+
+        elPlayerCover.innerHTML = renderCoverMarkup(song);
+        elPlayerTitle.textContent = song.title;
+        elPlayerArtist.textContent = song.artist;
+        elPlayerKey.textContent = 'Tom ' + song.key;
+        elPlayerCategory.textContent = song.category;
+        if (!engine.isLoading) {
+          elPlayerModeBadge.textContent = defaultPlayerModeText;
+        }
+      }
+
+      function updatePlayerFavButton() {
+        const isFav = Boolean(currentSongId && favoriteIds.has(currentSongId));
+        elPlayerFavIcon.setAttribute('fill', isFav ? '#ec4899' : 'none');
+        elPlayerFavIcon.setAttribute('stroke', isFav ? '#ec4899' : 'currentColor');
+        elPlayerFavText.textContent = isFav ? 'Favoritada' : 'Favoritar';
+      }
+
+      function toggleFavorite(songId) {
+        if (!songId) return;
+        if (favoriteIds.has(songId)) {
+          favoriteIds.delete(songId);
+        } else {
+          favoriteIds.add(songId);
+        }
+        saveStringSet(LS_FAVS_KEY, favoriteIds);
+        if (currentView === 'player' && songId === currentSongId) {
+          updatePlayerFavButton();
+        }
+        renderHomeCards();
+      }
+
+      async function recordSongPlay(song) {
+        if (!song || !song.id) return;
+        if (!listenedIds.has(song.id)) {
+          listenedIds.add(song.id);
+          saveStringSet(LS_LISTENED_KEY, listenedIds);
+          updateListenedWidget();
+        }
+        if (!sessionPlayedSet.has(song.id)) {
+          sessionPlayedSet.add(song.id);
+          song.plays = (Number(song.plays) || 0) + 1;
+          if (!song.isDemo && currentUser && db) {
+            saveSongToCloud(song);
+          }
+        }
+      }
+
+      /* =======================================================================
+         6. RENDERIZAÇÃO DA TELA INICIAL (CARDS, FILTROS E PROGRESSO)
+         ======================================================================= */
+      function getAvailableKeys() {
+        const set = new Set();
+        catalog.forEach((s) => { if (s.key) set.add(s.key); });
+        return ['Todos', ...Array.from(set)];
+      }
+
+      function getAvailableVoices() {
+        const set = new Set();
+        catalog.forEach((s) => {
+          (s.tracks || []).forEach((t) => {
+            if (!t.name) return;
+            const low = t.name.toLowerCase();
+            if (!low.includes('instrumental') && !low.includes('click') && !low.includes('guia')) {
+              set.add(t.name);
+            }
+          });
+        });
+        return ['Todas', ...Array.from(set)];
+      }
+
+      function renderFilters() {
+        elCategoryFilterRow.innerHTML = CATEGORIES.map((cat) => {
+          const active = selectedCategory === cat;
+          return '<button type="button" data-filter-cat="' + escapeHtml(cat) + '" class="filter-chip ' + (active ? 'active-cat' : '') + '">' + escapeHtml(cat) + '</button>';
+        }).join('');
+
+        const keys = getAvailableKeys();
+        if (!keys.includes(selectedKey)) selectedKey = 'Todos';
+        elKeyFilterRow.innerHTML = keys.map((k) => {
+          const active = selectedKey === k;
+          return '<button type="button" data-filter-key="' + escapeHtml(k) + '" class="filter-chip ' + (active ? 'active-key' : '') + '">' + (k === 'Todos' ? 'Todos' : escapeHtml(k)) + '</button>';
+        }).join('');
+
+        const voices = getAvailableVoices();
+        if (!voices.includes(selectedVoice)) selectedVoice = 'Todas';
+        elVoiceFilterRow.innerHTML = voices.map((v) => {
+          const active = selectedVoice === v;
+          return '<button type="button" data-filter-voice="' + escapeHtml(v) + '" class="filter-chip ' + (active ? 'active-voice' : '') + '">' + (v === 'Todas' ? 'Todas as Vozes' : escapeHtml(v)) + '</button>';
+        }).join('');
+
+        const hasActiveFilter = selectedCategory !== 'Todos' || selectedKey !== 'Todos' || selectedVoice !== 'Todas';
+        elBtnToggleFilters.classList.toggle('active', hasActiveFilter || !elFiltersDrawer.classList.contains('hidden'));
+      }
+
+      function updateListenedWidget() {
+        const total = catalog.length;
+        const heard = catalog.filter((s) => listenedIds.has(s.id)).length;
+        const pct = total > 0 ? Math.round((heard / total) * 100) : 0;
+        elListenedPctLabel.textContent = pct + '%';
+        elListenedProgressFill.style.width = pct + '%';
+        elListenedCountLabel.textContent = heard + ' de ' + total + (total === 1 ? ' música ouvida' : ' músicas ouvidas');
+      }
+
+      function getFilteredAndSortedSongs() {
+        const q = searchQuery.toLowerCase();
+        const filtered = catalog.filter((song) => {
+          const okCat = selectedCategory === 'Todos' || song.category === selectedCategory;
+          const okKey = selectedKey === 'Todos' || song.key === selectedKey;
+          const okVoice = selectedVoice === 'Todas' || (song.tracks || []).some((t) => t.name === selectedVoice);
+          const okFav = sortMode !== 'favorites' || favoriteIds.has(song.id);
+          const okSearch = !q ||
+            song.title.toLowerCase().includes(q) ||
+            song.artist.toLowerCase().includes(q) ||
+            (song.tags || []).some((tag) => tag.toLowerCase().includes(q)) ||
+            (song.tracks || []).some((t) => (t.name || '').toLowerCase().includes(q));
+          return okCat && okKey && okVoice && okFav && okSearch;
+        });
+
+        const sorted = filtered.slice();
+        if (sortMode === 'az') {
+          sorted.sort((a, b) => a.title.localeCompare(b.title, 'pt-BR'));
+        } else if (sortMode === 'plays') {
+          sorted.sort((a, b) => (Number(b.plays) || 0) - (Number(a.plays) || 0));
+        } else {
+          sorted.sort((a, b) => (Number(b.createdAt) || 0) - (Number(a.createdAt) || 0));
+        }
+        return sorted;
+      }
+
+      function renderHomeCards() {
+        updateListenedWidget();
+        const list = getFilteredAndSortedSongs();
+        elSongCountBadge.textContent = list.length + (list.length === 1 ? ' música' : ' músicas');
+
+        if (list.length === 0) {
+          elCardsGridContainer.innerHTML = '<div class="empty-state">' + (sortMode === 'favorites' ? 'Você ainda não favoritou nenhuma música. Clique no coração ♡ em qualquer card.' : 'Nenhuma música encontrada com esses filtros.') + '</div>';
+          return;
+        }
+
+        elCardsGridContainer.innerHTML = list.map((song) => {
+          const isFav = favoriteIds.has(song.id);
+          const isHeard = listenedIds.has(song.id);
+          const plays = Number(song.plays) || 0;
+          const voices = (song.tracks || [])
+            .map((t) => t.name)
+            .filter((n) => n && !n.toLowerCase().includes('instrumental'));
+          const shownVoices = voices.slice(0, 2);
+          const extraVoices = voices.length - shownVoices.length;
+
+          return (
+            '<article class="music-card" data-open-song="' + escapeHtml(song.id) + '" role="button" tabindex="0">' +
+              '<div class="card-banner">' +
+                renderCardBannerMarkup(song) +
+                '<span class="card-badge-top">Tom ' + escapeHtml(song.key) + '</span>' +
+                (isHeard
+                  ? '<span class="card-listened-dot" title="Música ouvida"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>'
+                  : '') +
+              '</div>' +
+              '<div class="card-content">' +
+                '<h3 class="card-title">' + escapeHtml(song.title) + '</h3>' +
+                '<p class="card-artist">' + escapeHtml(song.artist) + '</p>' +
+                (voices.length > 0
+                  ? '<div class="card-voices-row">' +
+                      shownVoices.map((v) => '<span class="voice-mini-badge">' + escapeHtml(v) + '</span>').join('') +
+                      (extraVoices > 0 ? '<span class="voice-mini-badge extra">+' + extraVoices + '</span>' : '') +
+                    '</div>'
+                  : '') +
+                '<div class="card-footer">' +
+                  '<span class="card-plays">' +
+                    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>' +
+                    plays + (plays === 1 ? ' play' : ' plays') +
+                  '</span>' +
+                  '<button type="button" class="btn-fav ' + (isFav ? 'active' : '') + '" data-fav-song="' + escapeHtml(song.id) + '" aria-label="Favoritar ' + escapeHtml(song.title) + '">' +
+                    '<svg width="17" height="17" viewBox="0 0 24 24" fill="' + (isFav ? '#ec4899' : 'none') + '" stroke="' + (isFav ? '#ec4899' : 'currentColor') + '" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>' +
+                  '</button>' +
+                '</div>' +
+              '</div>' +
+            '</article>'
+          );
+        }).join('');
+      }
+
+      /* =======================================================================
+         7. RENDERIZAÇÃO DO PLAYER, BARRA A-B, VELOCIDADE E MIXER
          ======================================================================= */
       function updateLoadingUI(isLoading, text) {
         elBtnPlayPause.classList.toggle('is-loading', isLoading);
@@ -3461,7 +4157,7 @@
           elIconPlay.classList.add('hidden');
           elIconPause.classList.add('hidden');
           elIconLoading.classList.remove('hidden');
-          elPlayerModeBadge.textContent = text || 'Carregando faixas...';
+          elPlayerModeBadge.textContent = text || 'Preparando faixas...';
         } else {
           elIconLoading.classList.add('hidden');
           updatePlayButtonUI(engine.isPlaying);
@@ -3574,143 +4270,8 @@
         }).join('');
       }
 
-      function selectSong(songId) {
-        const song = catalog.find((s) => s.id === songId) || catalog[0];
-        if (!song) {
-          elPlayerTitle.textContent = 'Nenhuma música no catálogo';
-          elPlayerArtist.textContent = 'Clique em "+ Nova Música" para começar';
-          elPlayerKey.textContent = '-';
-          elPlayerCategory.textContent = '-';
-          elTracksGrid.innerHTML = '';
-          return;
-        }
-
-        currentSongId = song.id;
-
-        const hasLocal = (song.tracks || []).some((t) => t.localObjectUrl);
-        const hasOnline = (song.tracks || []).some((t) => t.audioUrl);
-        defaultPlayerModeText = song.isDemo
-          ? 'Demo Interativa · ' + song.tracks.length + ' faixas'
-          : hasOnline && hasLocal
-            ? 'Online + Local · ' + song.tracks.length + ' faixas'
-            : hasOnline
-              ? 'Áudio Online (Sincronizado) · ' + song.tracks.length + ' faixas'
-              : hasLocal
-                ? 'Áudio Local (neste navegador) · ' + song.tracks.length + ' faixas'
-                : 'Sem áudio vinculado · ' + song.tracks.length + ' faixas';
-
-        elPlayerCover.innerHTML = renderCoverMarkup(song);
-        elPlayerTitle.textContent = song.title;
-        elPlayerArtist.textContent = song.artist;
-        elPlayerKey.textContent = 'Tom ' + song.key;
-        elPlayerCategory.textContent = song.category;
-        elPlayerModeBadge.textContent = defaultPlayerModeText;
-
-        engine.loadSong(song);
-
-        updateABUI();
-        renderSpeedButtons();
-        renderTracksMixer();
-        renderSongList();
-      }
-
       /* =======================================================================
-         6. REPERTÓRIO: BUSCA E FILTROS (CATEGORIA, TOM E VOZ DISPONÍVEL)
-         ======================================================================= */
-      function getAvailableKeys() {
-        const set = new Set();
-        catalog.forEach((s) => { if (s.key) set.add(s.key); });
-        return ['Todos', ...Array.from(set)];
-      }
-
-      function getAvailableVoices() {
-        const set = new Set();
-        catalog.forEach((s) => {
-          (s.tracks || []).forEach((t) => {
-            if (!t.name) return;
-            const low = t.name.toLowerCase();
-            if (!low.includes('instrumental') && !low.includes('click') && !low.includes('guia')) {
-              set.add(t.name);
-            }
-          });
-        });
-        return ['Todas', ...Array.from(set)];
-      }
-
-      function renderFilters() {
-        elCategoryFilterRow.innerHTML = CATEGORIES.map((cat) => {
-          const active = selectedCategory === cat;
-          return '<button type="button" data-filter-cat="' + escapeHtml(cat) + '" class="filter-chip ' + (active ? 'active-cat' : '') + '">' + escapeHtml(cat) + '</button>';
-        }).join('');
-
-        const keys = getAvailableKeys();
-        if (!keys.includes(selectedKey)) selectedKey = 'Todos';
-        elKeyFilterRow.innerHTML = keys.map((k) => {
-          const active = selectedKey === k;
-          return '<button type="button" data-filter-key="' + escapeHtml(k) + '" class="filter-chip ' + (active ? 'active-key' : '') + '">' + (k === 'Todos' ? 'Todos' : escapeHtml(k)) + '</button>';
-        }).join('');
-
-        const voices = getAvailableVoices();
-        if (!voices.includes(selectedVoice)) selectedVoice = 'Todas';
-        elVoiceFilterRow.innerHTML = voices.map((v) => {
-          const active = selectedVoice === v;
-          return '<button type="button" data-filter-voice="' + escapeHtml(v) + '" class="filter-chip ' + (active ? 'active-voice' : '') + '">' + (v === 'Todas' ? 'Todas as Vozes' : escapeHtml(v)) + '</button>';
-        }).join('');
-      }
-
-      function getFilteredSongs() {
-        const q = searchQuery.toLowerCase();
-        return catalog.filter((song) => {
-          const okCat = selectedCategory === 'Todos' || song.category === selectedCategory;
-          const okKey = selectedKey === 'Todos' || song.key === selectedKey;
-          const okVoice = selectedVoice === 'Todas' || (song.tracks || []).some((t) => t.name === selectedVoice);
-          const okSearch = !q ||
-            song.title.toLowerCase().includes(q) ||
-            song.artist.toLowerCase().includes(q) ||
-            (song.tags || []).some((tag) => tag.toLowerCase().includes(q)) ||
-            (song.tracks || []).some((t) => (t.name || '').toLowerCase().includes(q));
-          return okCat && okKey && okVoice && okSearch;
-        });
-      }
-
-      function renderSongList() {
-        const list = getFilteredSongs();
-        elSongCountBadge.textContent = list.length + (list.length === 1 ? ' música' : ' músicas');
-
-        if (list.length === 0) {
-          elSongListContainer.innerHTML = '<div class="empty-state">Nenhuma música encontrada com esses filtros.</div>';
-          return;
-        }
-
-        elSongListContainer.innerHTML = list.map((song) => {
-          const active = song.id === currentSongId;
-          const voices = (song.tracks || [])
-            .map((t) => t.name)
-            .filter((n) => n && !n.toLowerCase().includes('instrumental'));
-          const shown = voices.slice(0, 4);
-          const extra = voices.length - shown.length;
-
-          return (
-            '<button type="button" class="song-item ' + (active ? 'active' : '') + '" data-song-id="' + escapeHtml(song.id) + '">' +
-              '<div class="song-thumb">' + renderCoverMarkup(song) + '</div>' +
-              '<div class="song-item-body">' +
-                '<div class="song-item-top">' +
-                  '<span class="song-item-title">' + escapeHtml(song.title) + '</span>' +
-                  '<span class="key-pill">Tom ' + escapeHtml(song.key) + '</span>' +
-                '</div>' +
-                '<div class="song-item-meta">' + escapeHtml(song.artist) + ' · ' + escapeHtml(song.category) + '</div>' +
-                '<div class="voice-mini-badges">' +
-                  shown.map((v) => '<span class="voice-mini-badge">' + escapeHtml(v) + '</span>').join('') +
-                  (extra > 0 ? '<span class="voice-mini-badge extra">+' + extra + '</span>' : '') +
-                '</div>' +
-              '</div>' +
-            '</button>'
-          );
-        }).join('');
-      }
-
-      /* =======================================================================
-         7. MODAL "+ NOVA MÚSICA" E "EDITAR MÚSICA"
+         8. MODAL "+ NOVA MÚSICA" E "EDITAR MÚSICA" (COM UPLOAD DE CAPA)
          ======================================================================= */
       const elSongModal = document.getElementById('songModal');
       const elSongModalTitle = document.getElementById('songModalTitle');
@@ -3722,6 +4283,9 @@
       const elInputDuration = document.getElementById('inputDuration');
       const elInputTags = document.getElementById('inputTags');
       const elInputCoverUrl = document.getElementById('inputCoverUrl');
+      const elInputCoverFile = document.getElementById('inputCoverFile');
+      const elCoverPreviewThumb = document.getElementById('coverPreviewThumb');
+      const elBtnRemoveCover = document.getElementById('btnRemoveCover');
       const elInputGithubFolder = document.getElementById('inputGithubFolder');
       const elVoicePresetsRow = document.getElementById('voicePresetsRow');
       const elVoiceGroupsContainer = document.getElementById('voiceGroupsContainer');
@@ -3733,6 +4297,17 @@
 
       let editingSongId = null;
       let draftTracks = [];
+      let draftCoverDataUrl = '';
+
+      function updateCoverPreviewUI(src) {
+        if (src) {
+          elCoverPreviewThumb.innerHTML = '<img src="' + escapeHtml(src) + '" alt="Prévia da capa" />';
+          elBtnRemoveCover.classList.remove('hidden');
+        } else {
+          elCoverPreviewThumb.innerHTML = 'Sem imagem';
+          elBtnRemoveCover.classList.add('hidden');
+        }
+      }
 
       function renderVoicePresets() {
         elVoicePresetsRow.innerHTML = VOICE_PRESETS.map((p) => {
@@ -3814,6 +4389,7 @@
       function openSongModal(songToEdit) {
         elSongForm.reset();
         renderVoicePresets();
+        draftCoverDataUrl = '';
 
         if (songToEdit) {
           editingSongId = songToEdit.id;
@@ -3824,7 +4400,13 @@
           elInputCategory.value = songToEdit.category || 'Adoração';
           elInputDuration.value = songToEdit.duration || '';
           elInputTags.value = (songToEdit.tags || []).join(', ');
-          elInputCoverUrl.value = songToEdit.coverUrl || '';
+          if (songToEdit.coverUrl && songToEdit.coverUrl.startsWith('data:image')) {
+            draftCoverDataUrl = songToEdit.coverUrl;
+            elInputCoverUrl.value = '';
+          } else {
+            elInputCoverUrl.value = songToEdit.coverUrl || '';
+          }
+          updateCoverPreviewUI(songToEdit.coverUrl || '');
           elInputGithubFolder.value = 'audios/' + slugify(songToEdit.title || 'musica') + '/';
 
           draftTracks = (songToEdit.tracks || []).map((t) => ({
@@ -3843,6 +4425,7 @@
           elInputKey.value = 'G';
           elInputCategory.value = 'Adoração';
           elInputGithubFolder.value = 'audios/nova-musica/';
+          updateCoverPreviewUI('');
           draftTracks = ['Instrumental / VS', 'Soprano', 'Contralto', 'Tenor'].map((name, i) => ({
             id: 'trk_' + Date.now() + '_' + i,
             name,
@@ -3864,7 +4447,7 @@
       }
 
       /* =======================================================================
-         8. MODAL CATÁLOGO JSON
+         9. MODAL CATÁLOGO JSON
          ======================================================================= */
       const elJsonModal = document.getElementById('jsonModal');
       const elJsonTextarea = document.getElementById('jsonTextarea');
@@ -3879,8 +4462,51 @@
       }
 
       /* =======================================================================
-         9. EVENT LISTENERS
+         10. EVENT LISTENERS
          ======================================================================= */
+      elBtnBrandHome.addEventListener('click', showHomeView);
+      elBtnBackToHome.addEventListener('click', showHomeView);
+
+      elBtnPlayerFav.addEventListener('click', () => toggleFavorite(currentSongId));
+
+      elBtnToggleFilters.addEventListener('click', () => {
+        elFiltersDrawer.classList.toggle('hidden');
+        renderFilters();
+      });
+
+      elSortTabsBar.addEventListener('click', (e) => {
+        const tab = e.target.closest('[data-sort]');
+        if (!tab) return;
+        sortMode = tab.dataset.sort;
+        elSortTabsBar.querySelectorAll('.sort-tab').forEach((t) => {
+          t.classList.toggle('active', t === tab);
+        });
+        renderHomeCards();
+      });
+
+      elCardsGridContainer.addEventListener('click', (e) => {
+        const favBtn = e.target.closest('[data-fav-song]');
+        if (favBtn) {
+          e.stopPropagation();
+          toggleFavorite(favBtn.dataset.favSong);
+          return;
+        }
+        const card = e.target.closest('[data-open-song]');
+        if (card) {
+          openSongPlayer(card.dataset.openSong);
+        }
+      });
+
+      elCardsGridContainer.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const card = e.target.closest('[data-open-song]');
+          if (card) {
+            e.preventDefault();
+            openSongPlayer(card.dataset.openSong);
+          }
+        }
+      });
+
       elBtnPlayPause.addEventListener('click', () => {
         if (engine.isPlaying) engine.pause();
         else engine.play();
@@ -4002,11 +4628,9 @@
             const removedCloud = await deleteSongFromCloud(song.id);
             if (!removedCloud) {
               catalog = catalog.filter((s) => s.id !== song.id);
-              renderFilters();
-              renderSongList();
-              selectSong(catalog[0] ? catalog[0].id : null);
             }
             showToast('"' + song.title + '" foi excluída.', 'success');
+            showHomeView();
           }
         );
       });
@@ -4014,14 +4638,14 @@
       elSearchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value.trim();
         elBtnClearSearch.classList.toggle('hidden', !searchQuery);
-        renderSongList();
+        renderHomeCards();
       });
 
       elBtnClearSearch.addEventListener('click', () => {
         searchQuery = '';
         elSearchInput.value = '';
         elBtnClearSearch.classList.add('hidden');
-        renderSongList();
+        renderHomeCards();
       });
 
       elCategoryFilterRow.addEventListener('click', (e) => {
@@ -4029,7 +4653,7 @@
         if (!btn) return;
         selectedCategory = btn.dataset.filterCat;
         renderFilters();
-        renderSongList();
+        renderHomeCards();
       });
 
       elKeyFilterRow.addEventListener('click', (e) => {
@@ -4037,7 +4661,7 @@
         if (!btn) return;
         selectedKey = btn.dataset.filterKey;
         renderFilters();
-        renderSongList();
+        renderHomeCards();
       });
 
       elVoiceFilterRow.addEventListener('click', (e) => {
@@ -4045,13 +4669,39 @@
         if (!btn) return;
         selectedVoice = btn.dataset.filterVoice;
         renderFilters();
-        renderSongList();
+        renderHomeCards();
       });
 
-      elSongListContainer.addEventListener('click', (e) => {
-        const item = e.target.closest('[data-song-id]');
-        if (!item) return;
-        selectSong(item.dataset.songId);
+      /* Upload / URL da Capa no Modal */
+      elInputCoverFile.addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        try {
+          const compressed = await compressImageFile(file, 560, 0.78);
+          draftCoverDataUrl = compressed;
+          elInputCoverUrl.value = '';
+          updateCoverPreviewUI(compressed);
+          showToast('Imagem de capa pronta para salvar na nuvem!', 'success');
+        } catch (err) {
+          showToast('Não foi possível processar a imagem.', 'error');
+        }
+        e.target.value = '';
+      });
+
+      elInputCoverUrl.addEventListener('input', () => {
+        const val = elInputCoverUrl.value.trim();
+        if (val) {
+          draftCoverDataUrl = '';
+          updateCoverPreviewUI(val);
+        } else if (!draftCoverDataUrl) {
+          updateCoverPreviewUI('');
+        }
+      });
+
+      elBtnRemoveCover.addEventListener('click', () => {
+        draftCoverDataUrl = '';
+        elInputCoverUrl.value = '';
+        updateCoverPreviewUI('');
       });
 
       document.getElementById('btnOpenAddModal').addEventListener('click', () => openSongModal(null));
@@ -4077,7 +4727,7 @@
           t.audioUrl = folder + slugify(t.name) + '.mp3';
         });
         renderDraftTracks();
-        showToast('Caminhos GitHub preenchidos! Suba os MP3 com esses nomes na pasta ' + folder, 'success');
+        showToast('Caminhos GitHub preenchidos para ' + folder, 'success');
       });
 
       elVoicePresetsRow.addEventListener('click', (e) => {
@@ -4206,7 +4856,7 @@
         const category = elInputCategory.value;
         const duration = Number(elInputDuration.value) || 0;
         const tags = elInputTags.value.split(',').map((t) => t.trim()).filter(Boolean);
-        const coverUrl = elInputCoverUrl.value.trim();
+        const coverUrl = draftCoverDataUrl || elInputCoverUrl.value.trim();
 
         const preparedTracks = [];
         for (let i = 0; i < draftTracks.length; i++) {
@@ -4257,6 +4907,7 @@
             key,
             category,
             duration: duration || 180,
+            plays: 0,
             tags,
             coverUrl,
             isDemo: false,
@@ -4268,26 +4919,14 @@
         }
 
         const synced = savedSongObj ? await saveSongToCloud(savedSongObj) : false;
-        const hasMissingOnlineUrls = preparedTracks.some((t) => !t.audioUrl && t.hasLocalBlob);
-
-        if (synced && hasMissingOnlineUrls) {
-          showToast('"' + title + '" salva na nuvem! Lembre-se de preencher os caminhos dos MP3 para os cantores ouvirem no celular.', 'success');
-        } else if (synced) {
-          showToast('"' + title + '" salva e sincronizada na nuvem!', 'success');
-        } else {
-          showToast('"' + title + '" salva nesta sessão!', 'success');
-        }
+        showToast(synced ? '"' + title + '" salva e sincronizada na nuvem!' : '"' + title + '" salva!', 'success');
 
         closeSongModal();
-        selectedCategory = 'Todos';
-        selectedKey = 'Todos';
-        selectedVoice = 'Todas';
-        searchQuery = '';
-        elSearchInput.value = '';
-        elBtnClearSearch.classList.add('hidden');
         renderFilters();
-        renderSongList();
-        selectSong(targetId);
+        renderHomeCards();
+        if (currentView === 'player' && targetId) {
+          openSongPlayer(targetId);
+        }
       });
 
       elBtnShareLink.addEventListener('click', () => {
@@ -4305,14 +4944,12 @@
         tempInput.remove();
       });
 
-      elBtnQuickExportJson.addEventListener('click', () => {
-        downloadCatalogJsonFile();
-      });
+      elBtnQuickExportJson.addEventListener('click', () => downloadCatalogJsonFile());
 
       elBtnToggleAdminLock.addEventListener('click', () => {
         isAdminMode = !isAdminMode;
         applyAdminUI();
-        showToast(isAdminMode ? 'Modo Admin ativado.' : 'Modo Cantor ativado (edição oculta).');
+        showToast(isAdminMode ? 'Modo Admin ativado.' : 'Modo Cantor ativado.');
       });
 
       document.getElementById('btnOpenJsonModal').addEventListener('click', openJsonModal);
@@ -4323,9 +4960,9 @@
         elJsonTextarea.select();
         try {
           document.execCommand('copy');
-          showToast('JSON copiado para a área de transferência!', 'success');
+          showToast('JSON copiado!', 'success');
         } catch (err) {
-          showToast('Não foi possível copiar automaticamente. Use Ctrl+C.', 'error');
+          showToast('Use Ctrl+C para copiar.', 'error');
         }
       });
 
@@ -4339,7 +4976,7 @@
         const reader = new FileReader();
         reader.onload = () => {
           elJsonTextarea.value = String(reader.result || '');
-          showToast('Arquivo carregado. Clique em "Importar e Aplicar JSON" para confirmar.');
+          showToast('Arquivo carregado. Clique em "Importar e Aplicar JSON".');
         };
         reader.readAsText(file);
         e.target.value = '';
@@ -4348,20 +4985,17 @@
       document.getElementById('btnRestoreDemos').addEventListener('click', () => {
         openConfirm(
           'Restaurar músicas demonstrativas?',
-          'Isso irá carregar as 3 músicas demonstrativas padrão no editor JSON para visualização ou aplicação.',
+          'Isso irá carregar as 3 músicas demonstrativas padrão no repertório.',
           async () => {
             const demos = cloneDeep(DEFAULT_SONGS);
             elJsonTextarea.value = JSON.stringify(buildExportableCatalog(demos), null, 2);
             catalog = demos;
             if (currentUser && db) {
-              for (const item of demos) {
-                await saveSongToCloud(item);
-              }
+              for (const item of demos) await saveSongToCloud(item);
             }
             closeJsonModal();
             renderFilters();
-            renderSongList();
-            selectSong(catalog[0] ? catalog[0].id : null);
+            showHomeView();
             showToast('Músicas demonstrativas restauradas!', 'success');
           }
         );
@@ -4383,6 +5017,7 @@
               key: String(item.key || 'C'),
               category: String(item.category || 'Adoração'),
               duration: Number(item.duration) || 180,
+              plays: Number(item.plays) || 0,
               tags: Array.isArray(item.tags) ? item.tags.map(String) : [],
               isDemo: Boolean(item.isDemo),
               coverUrl: String(item.coverUrl || ''),
@@ -4404,16 +5039,13 @@
 
           catalog = sanitized;
           if (currentUser && db) {
-            for (const song of catalog) {
-              await saveSongToCloud(song);
-            }
+            for (const song of catalog) await saveSongToCloud(song);
           }
 
           await hydrateLocalAudios(catalog);
           closeJsonModal();
           renderFilters();
-          renderSongList();
-          selectSong(catalog[0] ? catalog[0].id : null);
+          showHomeView();
           showToast('Catálogo importado com ' + catalog.length + ' música(s)!', 'success');
         } catch (err) {
           showToast('JSON inválido: ' + err.message, 'error');
@@ -4424,9 +5056,7 @@
       document.getElementById('btnConfirmOk').addEventListener('click', async () => {
         const cb = confirmCallback;
         closeConfirm();
-        if (typeof cb === 'function') {
-          await cb();
-        }
+        if (typeof cb === 'function') await cb();
       });
 
       [elSongModal, elJsonModal, document.getElementById('confirmModal')].forEach((modalEl) => {
@@ -4445,7 +5075,7 @@
           if (!document.getElementById('confirmModal').classList.contains('hidden')) closeConfirm();
           else if (!elSongModal.classList.contains('hidden')) closeSongModal();
           else if (!elJsonModal.classList.contains('hidden')) closeJsonModal();
-        } else if (e.code === 'Space') {
+        } else if (e.code === 'Space' && currentView === 'player') {
           const tag = (document.activeElement && document.activeElement.tagName || '').toLowerCase();
           if (tag !== 'input' && tag !== 'textarea' && tag !== 'select' && tag !== 'button') {
             e.preventDefault();
@@ -4456,7 +5086,7 @@
       });
 
       /* =======================================================================
-         10. HIDRATAÇÃO DE ÁUDIOS LOCAIS (INDEXEDDB) & INICIALIZAÇÃO
+         11. HIDRATAÇÃO DE ÁUDIOS LOCAIS & INICIALIZAÇÃO
          ======================================================================= */
       async function hydrateLocalAudios(list) {
         for (const song of (list || [])) {
@@ -4480,15 +5110,15 @@
           if (!res.ok) return null;
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) return data;
-        } catch (err) {
-          // Arquivo externo opcional
-        }
+        } catch (err) {}
         return null;
       }
 
       async function init() {
         applyAdminUI();
         renderSpeedButtons();
+        renderFilters();
+        renderHomeCards();
 
         const cloudReady = await initCloudConnection();
         if (cloudReady) {
@@ -4497,15 +5127,11 @@
         }
 
         const external = await loadExternalCatalogJson();
-        if (external) {
-          catalog = external;
-        }
+        if (external) catalog = external;
 
         await hydrateLocalAudios(catalog);
-        currentSongId = catalog[0] ? catalog[0].id : null;
         renderFilters();
-        renderSongList();
-        selectSong(currentSongId);
+        renderHomeCards();
       }
 
       init();
