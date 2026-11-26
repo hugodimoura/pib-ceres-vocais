@@ -302,7 +302,6 @@
       min-width: 0;
     }
 
-    /* Barra de Busca estilo pílula roxa (Harmony Vox) */
     .hero-search-bar {
       display: flex;
       align-items: center;
@@ -392,7 +391,6 @@
       color: #fff;
     }
 
-    /* Abas de Ordenação (Mais recentes | A → Z | Mais tocadas | Favoritas) */
     .sort-tabs-bar {
       display: flex;
       align-items: center;
@@ -436,7 +434,6 @@
       box-shadow: 0 4px 14px rgba(139, 92, 246, 0.2);
     }
 
-    /* Painel recolhível de Filtros (Categoria, Tom, Voz) */
     .filters-drawer {
       padding: 14px 16px;
       border-radius: var(--radius-md);
@@ -513,7 +510,6 @@
       color: #fbcfe8;
     }
 
-    /* Card de Progresso ("Músicas ouvidas") */
     .progress-widget {
       padding: 14px 16px;
       border-radius: 16px;
@@ -576,7 +572,6 @@
       gap: 8px;
     }
 
-    /* Grade de Cards de Músicas (2 colunas no celular, 3-4 no desktop) */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
@@ -944,7 +939,6 @@
       flex-shrink: 0;
     }
 
-    /* Controles de Transporte + Barra de Progresso */
     .transport-row {
       display: flex;
       align-items: center;
@@ -1156,7 +1150,6 @@
       width: 100%;
     }
 
-    /* Painel de Ferramentas de Ensaio (Trecho A-B + Velocidade) */
     .study-toolbar {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1253,7 +1246,6 @@
       color: #e9d5ff;
     }
 
-    /* Mixer de Vozes */
     .mixer-wrapper {
       min-width: 0;
       max-width: 100%;
@@ -1645,7 +1637,6 @@
       color: var(--text-secondary);
     }
 
-    /* Bloco de Upload da Capa do Card */
     .cover-upload-box {
       padding: 14px;
       border-radius: var(--radius-md);
@@ -2298,7 +2289,7 @@
                 <span class="meta-dot">•</span>
                 <span id="playerCategory"></span>
               </div>
-              <div id="playerModeBadge" class="mode-pill">Demo Interativa</div>
+              <div id="playerModeBadge" class="mode-pill">Áudio Multifaixa</div>
             </div>
           </div>
         </div>
@@ -2457,7 +2448,7 @@
               <input id="inputTags" type="text" class="input-field" placeholder="Ex: domingo, ceia, refrão" />
             </div>
 
-            <!-- Imagem do Card (Upload direto para a nuvem ou URL) -->
+            <!-- Imagem do Card -->
             <div class="form-field full">
               <label>Imagem de Capa do Card (salva automaticamente na nuvem)</label>
               <div class="cover-upload-box">
@@ -2564,7 +2555,6 @@
             Carregar arquivo (.json)
             <input id="inputImportJsonFile" type="file" accept=".json,application/json" class="hidden" />
           </label>
-          <button id="btnRestoreDemos" type="button" class="btn btn-secondary btn-sm">Restaurar Demos Padrão</button>
         </div>
         <textarea id="jsonTextarea" class="json-textarea" spellcheck="false"></textarea>
       </div>
@@ -2722,7 +2712,6 @@
           .replace(/^-+|-+$/g, '') || 'faixa';
       }
 
-      /* Comprime imagem enviada para Base64 leve (cabe facilmente no Firestore) */
       function compressImageFile(file, maxWidth, quality) {
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
@@ -2827,10 +2816,6 @@
         return m + ':' + String(s).padStart(2, '0');
       }
 
-      function midiToFreq(midi) {
-        return 440 * Math.pow(2, (midi - 69) / 12);
-      }
-
       function getInitials(title) {
         const words = String(title || 'M').trim().split(/\s+/);
         if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
@@ -2893,117 +2878,7 @@
       }
 
       /* =======================================================================
-         2. ARRANJOS HARMÔNICOS DAS 3 MÚSICAS DEMONSTRATIVAS
-         ======================================================================= */
-      const DEMO_ARRANGEMENTS = {
-        'demo-agnus-dei': {
-          duration: 16,
-          steps: [
-            { t: 0, d: 2, inst: [40, 52, 56, 59], soprano: [64], contralto: [59], tenor: [56] },
-            { t: 2, d: 2, inst: [40, 52, 57, 61], soprano: [64], contralto: [61], tenor: [57] },
-            { t: 4, d: 2, inst: [40, 52, 56, 59], soprano: [63], contralto: [59], tenor: [56] },
-            { t: 6, d: 2, inst: [47, 54, 59, 63], soprano: [66], contralto: [63], tenor: [59] },
-            { t: 8, d: 2, inst: [49, 56, 59, 64], soprano: [68], contralto: [64], tenor: [59] },
-            { t: 10, d: 2, inst: [47, 54, 59, 63], soprano: [66], contralto: [63], tenor: [59] },
-            { t: 12, d: 2, inst: [45, 52, 57, 61], soprano: [64], contralto: [61], tenor: [57] },
-            { t: 14, d: 2, inst: [40, 52, 56, 59], soprano: [64], contralto: [59], tenor: [56] }
-          ]
-        },
-        'demo-santo-pra-sempre': {
-          duration: 16,
-          steps: [
-            { t: 0, d: 2, inst: [43, 55, 59, 62], soprano: [71], mezzo: [67], contralto: [62], tenor: [59], baritono: [55] },
-            { t: 2, d: 2, inst: [48, 55, 60, 64], soprano: [72], mezzo: [67], contralto: [64], tenor: [60], baritono: [55] },
-            { t: 4, d: 2, inst: [40, 55, 59, 62], soprano: [71], mezzo: [67], contralto: [62], tenor: [59], baritono: [52] },
-            { t: 6, d: 2, inst: [50, 57, 62, 66], soprano: [69], mezzo: [66], contralto: [62], tenor: [57], baritono: [54] },
-            { t: 8, d: 2, inst: [48, 55, 60, 64], soprano: [72], mezzo: [67], contralto: [64], tenor: [60], baritono: [55] },
-            { t: 10, d: 2, inst: [47, 55, 59, 62], soprano: [71], mezzo: [67], contralto: [62], tenor: [59], baritono: [55] },
-            { t: 12, d: 2, inst: [45, 52, 57, 60], soprano: [69], mezzo: [64], contralto: [60], tenor: [57], baritono: [52] },
-            { t: 14, d: 2, inst: [50, 57, 62, 66], soprano: [71], mezzo: [66], contralto: [62], tenor: [57], baritono: [54] }
-          ]
-        },
-        'demo-bondade-de-deus': {
-          duration: 16,
-          steps: [
-            { t: 0, d: 2, inst: [45, 57, 61, 64], lead: [64], soprano: [69], contralto: [61], tenor: [57], baixo: [45] },
-            { t: 2, d: 2, inst: [45, 57, 62, 66], lead: [66], soprano: [69], contralto: [62], tenor: [57], baixo: [45] },
-            { t: 4, d: 2, inst: [45, 57, 61, 64], lead: [64], soprano: [68], contralto: [61], tenor: [57], baixo: [45] },
-            { t: 6, d: 2, inst: [44, 56, 59, 64], lead: [64], soprano: [68], contralto: [59], tenor: [56], baixo: [44] },
-            { t: 8, d: 2, inst: [42, 54, 57, 61], lead: [61], soprano: [66], contralto: [57], tenor: [54], baixo: [42] },
-            { t: 10, d: 2, inst: [50, 57, 62, 66], lead: [66], soprano: [69], contralto: [62], tenor: [57], baixo: [50] },
-            { t: 12, d: 2, inst: [40, 56, 59, 64], lead: [64], soprano: [68], contralto: [59], tenor: [56], baixo: [40] },
-            { t: 14, d: 2, inst: [45, 57, 61, 64], lead: [64], soprano: [69], contralto: [61], tenor: [57], baixo: [45] }
-          ]
-        }
-      };
-
-      const DEFAULT_SONGS = [
-        {
-          id: 'demo-agnus-dei',
-          title: 'Agnus Dei',
-          artist: 'Harmony Vox Worship',
-          key: 'E',
-          category: 'Adoração',
-          duration: 16,
-          plays: 0,
-          tags: ['adoração', 'aleluia', 'ceia', 'clássico'],
-          isDemo: true,
-          coverUrl: '',
-          tracks: [
-            { id: 't1', name: 'Instrumental', demoRole: 'inst', audioUrl: '' },
-            { id: 't2', name: 'Tenor', demoRole: 'tenor', audioUrl: '' },
-            { id: 't3', name: 'Contralto', demoRole: 'contralto', audioUrl: '' },
-            { id: 't4', name: 'Soprano', demoRole: 'soprano', audioUrl: '' }
-          ]
-        },
-        {
-          id: 'demo-santo-pra-sempre',
-          title: 'Santo Pra Sempre',
-          artist: 'PIB Ceres Worship',
-          key: 'G',
-          category: 'Adoração',
-          duration: 16,
-          plays: 0,
-          tags: ['santo', 'adoração', 'coral', 'mezzo', 'barítono'],
-          isDemo: true,
-          coverUrl: '',
-          tracks: [
-            { id: 't1', name: 'Instrumental', demoRole: 'inst', audioUrl: '' },
-            { id: 't2', name: 'Soprano', demoRole: 'soprano', audioUrl: '' },
-            { id: 't3', name: 'Mezzo-Soprano', demoRole: 'mezzo', audioUrl: '' },
-            { id: 't4', name: 'Contralto', demoRole: 'contralto', audioUrl: '' },
-            { id: 't5', name: 'Tenor', demoRole: 'tenor', audioUrl: '' },
-            { id: 't6', name: 'Barítono', demoRole: 'baritono', audioUrl: '' }
-          ]
-        },
-        {
-          id: 'demo-bondade-de-deus',
-          title: 'Bondade de Deus',
-          artist: 'PIB Ceres Worship',
-          key: 'A',
-          category: 'Celebração',
-          duration: 16,
-          plays: 0,
-          tags: ['bondade', 'gratidão', 'celebração', 'baixo', 'lead'],
-          isDemo: true,
-          coverUrl: '',
-          tracks: [
-            { id: 't1', name: 'Instrumental', demoRole: 'inst', audioUrl: '' },
-            { id: 't2', name: 'Voz Principal', demoRole: 'lead', audioUrl: '' },
-            { id: 't3', name: 'Soprano', demoRole: 'soprano', audioUrl: '' },
-            { id: 't4', name: 'Contralto', demoRole: 'contralto', audioUrl: '' },
-            { id: 't5', name: 'Tenor', demoRole: 'tenor', audioUrl: '' },
-            { id: 't6', name: 'Baixo', demoRole: 'baixo', audioUrl: '' }
-          ]
-        }
-      ];
-
-      function cloneDeep(obj) {
-        return JSON.parse(JSON.stringify(obj));
-      }
-
-      /* =======================================================================
-         2.1 SINCRONIZAÇÃO NA NUVEM (FIRESTORE EM TEMPO REAL)
+         2. SINCRONIZAÇÃO NA NUVEM (FIRESTORE EM TEMPO REAL)
          ======================================================================= */
       function serializeSongForCloud(song) {
         return {
@@ -3015,14 +2890,12 @@
           duration: Number(song.duration) || 180,
           plays: Number(song.plays) || 0,
           tags: Array.isArray(song.tags) ? song.tags.map(String) : [],
-          isDemo: Boolean(song.isDemo),
           coverUrl: song.coverUrl && !String(song.coverUrl).startsWith('blob:') ? String(song.coverUrl) : '',
           createdAt: Number(song.createdAt) || Date.now(),
           updatedAt: Date.now(),
           tracks: (song.tracks || []).map((t) => ({
             id: String(t.id),
             name: String(t.name || ''),
-            demoRole: String(t.demoRole || ''),
             audioUrl: String(t.audioUrl || ''),
             localFileName: String(t.localFileName || '')
           }))
@@ -3038,7 +2911,25 @@
         badge.textContent = text;
       }
 
-      async function initCloudConnection() {
+      async function ensureCloudAuth() {
+        if (currentUser) return currentUser;
+        if (!auth) return null;
+        try {
+          if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+            const cred = await signInWithCustomToken(auth, __initial_auth_token);
+            currentUser = cred.user;
+          } else {
+            const cred = await signInAnonymously(auth);
+            currentUser = cred.user;
+          }
+          return currentUser;
+        } catch (err) {
+          console.warn('Login anônimo indisponível neste navegador:', err);
+          return null;
+        }
+      }
+
+      function initCloudConnection() {
         if (!firebaseConfig) {
           updateCloudStatus('offline', 'Modo local');
           return false;
@@ -3047,26 +2938,18 @@
           const app = initializeApp(firebaseConfig);
           db = getFirestore(app);
           auth = getAuth(app);
-
-          if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-            const cred = await signInWithCustomToken(auth, __initial_auth_token);
-            currentUser = cred.user;
-          } else {
-            const cred = await signInAnonymously(auth);
-            currentUser = cred.user;
-          }
-
-          updateCloudStatus('online', 'Nuvem sincronizada');
+          ensureCloudAuth();
           return true;
         } catch (err) {
-          console.warn('Falha ao conectar na nuvem:', err);
+          console.warn('Falha ao inicializar Firebase:', err);
           updateCloudStatus('offline', 'Sem conexão');
           return false;
         }
       }
 
       async function saveSongToCloud(song) {
-        if (!currentUser || !db) return false;
+        if (!db) return false;
+        await ensureCloudAuth();
         try {
           const ref = doc(db, 'artifacts', appId, 'public', 'data', 'songs', String(song.id));
           await setDoc(ref, serializeSongForCloud(song));
@@ -3079,7 +2962,8 @@
       }
 
       async function deleteSongFromCloud(songId) {
-        if (!currentUser || !db) return false;
+        if (!db) return false;
+        await ensureCloudAuth();
         try {
           const ref = doc(db, 'artifacts', appId, 'public', 'data', 'songs', String(songId));
           await deleteDoc(ref);
@@ -3092,7 +2976,7 @@
       }
 
       function subscribeCloudCatalog() {
-        if (!currentUser || !db) return;
+        if (!db) return;
         if (unsubscribeCloud) unsubscribeCloud();
 
         const songsCol = collection(db, 'artifacts', appId, 'public', 'data', 'songs');
@@ -3109,11 +2993,9 @@
 
             cloudSongs.sort((a, b) => (Number(b.createdAt) || 0) - (Number(a.createdAt) || 0));
 
-            if (cloudSongs.length > 0) {
-              catalog = cloudSongs;
-            } else {
-              catalog = cloneDeep(DEFAULT_SONGS);
-            }
+            catalog = cloudSongs;
+            isLoadingCatalog = false;
+            updateCloudStatus('online', 'Nuvem sincronizada');
 
             await hydrateLocalAudios(catalog);
 
@@ -3132,9 +3014,18 @@
               }
             }
           },
-          (error) => {
+          async (error) => {
             console.warn('Erro na sincronização em tempo real:', error);
-            updateCloudStatus('offline', 'Erro de sincronização');
+            isLoadingCatalog = false;
+            updateCloudStatus('offline', 'Erro de conexão');
+
+            const external = await loadExternalCatalogJson();
+            if (external) {
+              catalog = external;
+              await hydrateLocalAudios(catalog);
+            }
+            renderFilters();
+            renderHomeCards();
           }
         );
       }
@@ -3149,12 +3040,10 @@
           duration: song.duration || 180,
           plays: Number(song.plays) || 0,
           tags: song.tags || [],
-          isDemo: Boolean(song.isDemo),
           coverUrl: song.coverUrl && song.coverUrl.startsWith('blob:') ? '' : (song.coverUrl || ''),
           tracks: (song.tracks || []).map((t) => ({
             id: t.id,
             name: t.name,
-            demoRole: t.demoRole || '',
             audioUrl: t.audioUrl || ''
           }))
         }));
@@ -3188,10 +3077,6 @@
           this.ctx = null;
           this.masterGain = null;
 
-          this.demoTrackGains = {};
-          this.demoActiveNodes = [];
-          this.lastDemoStepIdx = -1;
-
           this.bufferCache = new Map();
           this.loadedTracks = {};
           this.bufferGains = {};
@@ -3204,7 +3089,6 @@
           this.lastResyncAt = {};
 
           this.currentSong = null;
-          this.mode = 'demo';
           this.activeRealBackend = 'buffer';
           this.loadSeq = 0;
           this.isLoading = false;
@@ -3213,7 +3097,7 @@
           this.trackStates = {};
           this.isPlaying = false;
           this.currentTime = 0;
-          this.duration = 16;
+          this.duration = 180;
           this.playbackRate = 1.0;
           this.loopAll = true;
           this.loopA = null;
@@ -3235,23 +3119,6 @@
             return this.ctx.resume();
           }
           return Promise.resolve();
-        }
-
-        stopDemoNodes() {
-          const now = this.ctx ? this.ctx.currentTime : 0;
-          this.demoActiveNodes.forEach((nodeObj) => {
-            try {
-              if (nodeObj.env && this.ctx) {
-                nodeObj.env.gain.cancelScheduledValues(now);
-                nodeObj.env.gain.setTargetAtTime(0.0001, now, 0.03);
-              }
-              nodeObj.stopList.forEach((osc) => {
-                try { osc.stop(now + 0.08); } catch (e) {}
-              });
-            } catch (e) {}
-          });
-          this.demoActiveNodes = [];
-          this.lastDemoStepIdx = -1;
         }
 
         stopBufferSources() {
@@ -3280,7 +3147,6 @@
 
         loadSong(song) {
           this.pause();
-          this.stopDemoNodes();
           this.stopBufferSources();
           this.cleanupMediaElements();
 
@@ -3292,34 +3158,23 @@
           this.loopA = null;
           this.loopB = null;
           this.trackStates = {};
-          this.demoTrackGains = {};
           this.bufferGains = {};
           this.loadedTracks = {};
           this.isLoading = false;
           this.loadPromise = null;
 
-          const hasRealAudio = (song.tracks || []).some((t) => t.localObjectUrl || t.audioUrl);
-          this.mode = (!song.isDemo && hasRealAudio) ? 'real' : (song.isDemo ? 'demo' : 'real');
-
           (song.tracks || []).forEach((t) => {
             this.trackStates[t.id] = { volume: 0.85, muted: false, solo: false };
           });
 
-          if (this.mode === 'demo') {
-            const arr = DEMO_ARRANGEMENTS[song.id] || DEMO_ARRANGEMENTS['demo-agnus-dei'];
-            this.duration = arr.duration;
-            this.onLoadingChange(false, '');
-            this.onTimeUpdate(0, this.duration);
-          } else {
-            this.duration = Number(song.duration) > 0 ? Number(song.duration) : 180;
-            this.onTimeUpdate(0, this.duration);
+          this.duration = Number(song.duration) > 0 ? Number(song.duration) : 180;
+          this.onTimeUpdate(0, this.duration);
 
-            const tracksWithSrc = (song.tracks || []).filter((t) => t.localObjectUrl || t.audioUrl);
-            if (tracksWithSrc.length > 0) {
-              this.loadPromise = this.preloadRealTracks(song, tracksWithSrc, mySeq);
-            } else {
-              this.onLoadingChange(false, '');
-            }
+          const tracksWithSrc = (song.tracks || []).filter((t) => t.localObjectUrl || t.audioUrl);
+          if (tracksWithSrc.length > 0) {
+            this.loadPromise = this.preloadRealTracks(song, tracksWithSrc, mySeq);
+          } else {
+            this.onLoadingChange(false, '');
           }
         }
 
@@ -3408,24 +3263,17 @@
           (this.currentSong.tracks || []).forEach((t) => {
             const g = this.getEffectiveGain(t.id);
 
-            if (this.mode === 'demo') {
-              const gainNode = this.demoTrackGains[t.id];
-              if (gainNode && this.ctx) {
-                gainNode.gain.setTargetAtTime(g, now, 0.015);
-              }
+            const bufGain = this.bufferGains[t.id];
+            if (bufGain && this.ctx) {
+              bufGain.gain.setTargetAtTime(g, now, 0.015);
+            }
+            const mediaGain = this.mediaElementGains[t.id];
+            if (mediaGain && this.ctx) {
+              mediaGain.gain.setTargetAtTime(g, now, 0.015);
             } else {
-              const bufGain = this.bufferGains[t.id];
-              if (bufGain && this.ctx) {
-                bufGain.gain.setTargetAtTime(g, now, 0.015);
-              }
-              const mediaGain = this.mediaElementGains[t.id];
-              if (mediaGain && this.ctx) {
-                mediaGain.gain.setTargetAtTime(g, now, 0.015);
-              } else {
-                const el = this.audioElements[t.id];
-                if (el) {
-                  el.volume = Math.max(0, Math.min(1, g));
-                }
+              const el = this.audioElements[t.id];
+              if (el) {
+                el.volume = Math.max(0, Math.min(1, g));
               }
             }
           });
@@ -3441,7 +3289,7 @@
           const prevRate = this.playbackRate;
           this.playbackRate = rate;
 
-          if (this.mode === 'real' && wasPlaying) {
+          if (wasPlaying) {
             const needSwitchBackend = (Math.abs(prevRate - 1.0) < 0.01) !== (Math.abs(rate - 1.0) < 0.01);
             if (needSwitchBackend) {
               const pos = this.currentTime;
@@ -3577,26 +3425,6 @@
         async play() {
           if (!this.currentSong) return;
 
-          if (this.mode === 'demo') {
-            await this.ensureAudioContext();
-            (this.currentSong.tracks || []).forEach((t) => {
-              if (!this.demoTrackGains[t.id]) {
-                const gn = this.ctx.createGain();
-                gn.gain.value = this.getEffectiveGain(t.id);
-                gn.connect(this.masterGain);
-                this.demoTrackGains[t.id] = gn;
-              }
-            });
-            this.applyAllGains();
-            this.isPlaying = true;
-            this.lastFrameTs = performance.now();
-            this.triggerDemoStepForTime(this.currentTime, true);
-            this.startLoop();
-            this.onPlayStateChange(true);
-            recordSongPlay(this.currentSong);
-            return;
-          }
-
           await this.ensureAudioContext();
 
           if (this.isLoading && this.loadPromise) {
@@ -3627,7 +3455,7 @@
         }
 
         pause() {
-          if (this.isPlaying && this.mode === 'real' && this.activeRealBackend === 'buffer' && this.ctx) {
+          if (this.isPlaying && this.activeRealBackend === 'buffer' && this.ctx) {
             const elapsed = Math.max(0, this.ctx.currentTime - this.bufferStartCtxTime);
             this.currentTime = Math.min(this.duration, this.bufferStartOffset + elapsed);
           }
@@ -3637,7 +3465,6 @@
             cancelAnimationFrame(this.rafId);
             this.rafId = null;
           }
-          this.stopDemoNodes();
           this.stopBufferSources();
           Object.values(this.audioElements).forEach((el) => {
             try { el.pause(); } catch (e) {}
@@ -3649,18 +3476,14 @@
           const clamped = Math.max(0, Math.min(this.duration, timeSec));
           this.currentTime = clamped;
 
-          if (this.mode === 'real') {
-            if (this.isPlaying) {
-              if (this.activeRealBackend === 'buffer') {
-                this.startBufferPlayback(clamped);
-              } else {
-                Object.values(this.audioElements).forEach((el) => {
-                  try { el.currentTime = clamped; } catch (e) {}
-                });
-              }
+          if (this.isPlaying) {
+            if (this.activeRealBackend === 'buffer') {
+              this.startBufferPlayback(clamped);
+            } else {
+              Object.values(this.audioElements).forEach((el) => {
+                try { el.currentTime = clamped; } catch (e) {}
+              });
             }
-          } else if (this.isPlaying) {
-            this.triggerDemoStepForTime(clamped, true);
           }
 
           this.onTimeUpdate(this.currentTime, this.duration);
@@ -3670,12 +3493,9 @@
           if (this.rafId) cancelAnimationFrame(this.rafId);
           const tick = (nowTs) => {
             if (!this.isPlaying) return;
-            const dt = Math.min(0.1, (nowTs - this.lastFrameTs) / 1000);
             this.lastFrameTs = nowTs;
 
-            if (this.mode === 'demo') {
-              this.currentTime += dt * this.playbackRate;
-            } else if (this.activeRealBackend === 'buffer' && this.ctx) {
+            if (this.activeRealBackend === 'buffer' && this.ctx) {
               const elapsed = Math.max(0, this.ctx.currentTime - this.bufferStartCtxTime);
               this.currentTime = this.bufferStartOffset + elapsed;
             } else {
@@ -3708,138 +3528,26 @@
               }
             }
 
-            if (this.mode === 'demo') {
-              this.triggerDemoStepForTime(this.currentTime, false);
-            }
-
             this.onTimeUpdate(this.currentTime, this.duration);
             this.rafId = requestAnimationFrame(tick);
           };
           this.rafId = requestAnimationFrame(tick);
-        }
-
-        triggerDemoStepForTime(timeSec, force) {
-          if (!this.ctx || !this.currentSong) return;
-          const arr = DEMO_ARRANGEMENTS[this.currentSong.id] || DEMO_ARRANGEMENTS['demo-agnus-dei'];
-          let idx = arr.steps.findIndex((s) => timeSec >= s.t && timeSec < s.t + s.d);
-          if (idx === -1) idx = 0;
-          if (!force && idx === this.lastDemoStepIdx) return;
-
-          this.stopDemoNodes();
-          this.lastDemoStepIdx = idx;
-
-          const step = arr.steps[idx];
-          const now = this.ctx.currentTime;
-
-          const voiceProfiles = {
-            soprano:   { lfoRate: 5.3, formant: 1220, body: 2400, pan: -0.22, gain: 0.20 },
-            lead:      { lfoRate: 5.0, formant: 1040, body: 2200, pan:  0.00, gain: 0.22 },
-            mezzo:     { lfoRate: 4.9, formant:  960, body: 1950, pan:  0.18, gain: 0.20 },
-            contralto: { lfoRate: 4.7, formant:  820, body: 1700, pan:  0.30, gain: 0.20 },
-            tenor:     { lfoRate: 4.5, formant:  680, body: 1500, pan: -0.30, gain: 0.20 },
-            baritono:  { lfoRate: 4.3, formant:  560, body: 1280, pan:  0.22, gain: 0.21 },
-            baixo:     { lfoRate: 4.0, formant:  450, body: 1020, pan: -0.10, gain: 0.23 }
-          };
-
-          (this.currentSong.tracks || []).forEach((track) => {
-            const role = track.demoRole || 'contralto';
-            const notes = step[role];
-            const trackGain = this.demoTrackGains[track.id];
-            if (!notes || !trackGain) return;
-
-            notes.forEach((midi) => {
-              const freq = midiToFreq(midi);
-              const env = this.ctx.createGain();
-
-              if (role === 'inst') {
-                const osc1 = this.ctx.createOscillator();
-                const osc2 = this.ctx.createOscillator();
-                osc1.type = 'triangle';
-                osc2.type = 'sine';
-                osc1.frequency.setValueAtTime(freq, now);
-                osc2.frequency.setValueAtTime(freq * 1.002, now);
-
-                const lp = this.ctx.createBiquadFilter();
-                lp.type = 'lowpass';
-                lp.frequency.setValueAtTime(1100, now);
-
-                env.gain.setValueAtTime(0.0001, now);
-                env.gain.linearRampToValueAtTime(0.11, now + 0.08);
-                env.gain.exponentialRampToValueAtTime(0.065, now + 0.55);
-
-                osc1.connect(lp);
-                osc2.connect(lp);
-                lp.connect(env);
-                env.connect(trackGain);
-
-                osc1.start(now);
-                osc2.start(now);
-                this.demoActiveNodes.push({ stopList: [osc1, osc2], env });
-              } else {
-                const prof = voiceProfiles[role] || voiceProfiles.contralto;
-                const osc1 = this.ctx.createOscillator();
-                const osc2 = this.ctx.createOscillator();
-                osc1.type = 'sawtooth';
-                osc2.type = 'triangle';
-                osc1.frequency.setValueAtTime(freq, now);
-                osc2.frequency.setValueAtTime(freq, now);
-
-                const lfo = this.ctx.createOscillator();
-                const lfoGain = this.ctx.createGain();
-                lfo.frequency.setValueAtTime(prof.lfoRate, now);
-                lfoGain.gain.setValueAtTime(freq * 0.0055, now);
-                lfo.connect(lfoGain);
-                lfoGain.connect(osc1.frequency);
-                lfoGain.connect(osc2.frequency);
-
-                const formant = this.ctx.createBiquadFilter();
-                formant.type = 'bandpass';
-                formant.frequency.setValueAtTime(prof.formant, now);
-                formant.Q.setValueAtTime(2.0, now);
-
-                const body = this.ctx.createBiquadFilter();
-                body.type = 'lowpass';
-                body.frequency.setValueAtTime(prof.body, now);
-
-                env.gain.setValueAtTime(0.0001, now);
-                env.gain.linearRampToValueAtTime(prof.gain, now + 0.12);
-
-                osc1.connect(formant);
-                osc2.connect(body);
-                formant.connect(env);
-                body.connect(env);
-
-                if (typeof this.ctx.createStereoPanner === 'function') {
-                  const panner = this.ctx.createStereoPanner();
-                  panner.pan.value = prof.pan;
-                  env.connect(panner);
-                  panner.connect(trackGain);
-                } else {
-                  env.connect(trackGain);
-                }
-
-                lfo.start(now);
-                osc1.start(now);
-                osc2.start(now);
-                this.demoActiveNodes.push({ stopList: [lfo, osc1, osc2], env });
-              }
-            });
-          });
         }
       }
 
       /* =======================================================================
          4. ESTADO DA APLICAÇÃO & REFERÊNCIAS DOM
          ======================================================================= */
-      let catalog = cloneDeep(DEFAULT_SONGS);
-      let currentView = 'home'; // 'home' | 'player'
+      let catalog = [];
+      let isLoadingCatalog = true;
+      let currentView = 'home';
       let currentSongId = null;
       let searchQuery = '';
-      let sortMode = 'recent'; // 'recent' | 'az' | 'plays' | 'favorites'
+      let sortMode = 'recent';
       let selectedCategory = 'Todos';
       let selectedKey = 'Todos';
       let selectedVoice = 'Todas';
-      let defaultPlayerModeText = 'Demo Interativa';
+      let defaultPlayerModeText = 'Áudio Multifaixa';
 
       const urlParams = new URLSearchParams(window.location.search);
       let isAdminMode = urlParams.get('admin') === '1';
@@ -3956,15 +3664,13 @@
       function updatePlayerHeaderMeta(song) {
         const hasLocal = (song.tracks || []).some((t) => t.localObjectUrl);
         const hasOnline = (song.tracks || []).some((t) => t.audioUrl);
-        defaultPlayerModeText = song.isDemo
-          ? 'Demo Interativa · ' + song.tracks.length + ' faixas'
-          : hasOnline && hasLocal
-            ? 'Online + Local · ' + song.tracks.length + ' faixas'
-            : hasOnline
-              ? 'Áudio Online (Sincronizado) · ' + song.tracks.length + ' faixas'
-              : hasLocal
-                ? 'Áudio Local (neste navegador) · ' + song.tracks.length + ' faixas'
-                : 'Sem áudio vinculado · ' + song.tracks.length + ' faixas';
+        defaultPlayerModeText = hasOnline && hasLocal
+          ? 'Online + Local · ' + song.tracks.length + ' faixas'
+          : hasOnline
+            ? 'Áudio Online (Sincronizado) · ' + song.tracks.length + ' faixas'
+            : hasLocal
+              ? 'Áudio Local (neste navegador) · ' + song.tracks.length + ' faixas'
+              : 'Sem áudio vinculado · ' + song.tracks.length + ' faixas';
 
         elPlayerCover.innerHTML = renderCoverMarkup(song);
         elPlayerTitle.textContent = song.title;
@@ -4007,7 +3713,7 @@
         if (!sessionPlayedSet.has(song.id)) {
           sessionPlayedSet.add(song.id);
           song.plays = (Number(song.plays) || 0) + 1;
-          if (!song.isDemo && currentUser && db) {
+          if (db) {
             saveSongToCloud(song);
           }
         }
@@ -4097,11 +3803,26 @@
 
       function renderHomeCards() {
         updateListenedWidget();
+
+        if (isLoadingCatalog) {
+          elSongCountBadge.textContent = 'Carregando...';
+          elCardsGridContainer.innerHTML = '<div class="empty-state">Carregando repertório da nuvem...</div>';
+          return;
+        }
+
         const list = getFilteredAndSortedSongs();
         elSongCountBadge.textContent = list.length + (list.length === 1 ? ' música' : ' músicas');
 
         if (list.length === 0) {
-          elCardsGridContainer.innerHTML = '<div class="empty-state">' + (sortMode === 'favorites' ? 'Você ainda não favoritou nenhuma música. Clique no coração ♡ em qualquer card.' : 'Nenhuma música encontrada com esses filtros.') + '</div>';
+          let emptyText = 'Nenhuma música cadastrada no repertório ainda.';
+          if (catalog.length > 0 && sortMode === 'favorites') {
+            emptyText = 'Você ainda não favoritou nenhuma música. Clique no coração ♡ em qualquer card.';
+          } else if (catalog.length > 0) {
+            emptyText = 'Nenhuma música encontrada com esses filtros.';
+          } else if (isAdminMode) {
+            emptyText = 'Nenhuma música cadastrada ainda. Clique em "+ Nova Música" no topo para começar.';
+          }
+          elCardsGridContainer.innerHTML = '<div class="empty-state">' + emptyText + '</div>';
           return;
         }
 
@@ -4413,7 +4134,6 @@
           draftTracks = (songToEdit.tracks || []).map((t) => ({
             id: t.id,
             name: t.name,
-            demoRole: t.demoRole || '',
             localObjectUrl: t.localObjectUrl || '',
             localFileName: t.localFileName || '',
             localFileBlob: null,
@@ -4430,7 +4150,6 @@
           draftTracks = ['Instrumental / VS', 'Soprano', 'Contralto', 'Tenor'].map((name, i) => ({
             id: 'trk_' + Date.now() + '_' + i,
             name,
-            demoRole: '',
             localObjectUrl: '',
             localFileName: '',
             localFileBlob: null,
@@ -4673,7 +4392,6 @@
         renderHomeCards();
       });
 
-      /* Upload / URL da Capa no Modal */
       elInputCoverFile.addEventListener('change', async (e) => {
         const file = e.target.files && e.target.files[0];
         if (!file) return;
@@ -4742,7 +4460,6 @@
           draftTracks = preset.voices.map((name, i) => ({
             id: 'trk_' + Date.now() + '_' + i + '_' + Math.random().toString(36).slice(2, 5),
             name,
-            demoRole: '',
             localObjectUrl: '',
             localFileName: '',
             localFileBlob: null,
@@ -4764,7 +4481,6 @@
           draftTracks.push({
             id: 'trk_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
             name,
-            demoRole: '',
             localObjectUrl: '',
             localFileName: '',
             audioUrl: ''
@@ -4783,7 +4499,6 @@
         draftTracks.push({
           id: 'trk_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
           name,
-          demoRole: '',
           localObjectUrl: '',
           localFileName: '',
           audioUrl: ''
@@ -4869,7 +4584,6 @@
           preparedTracks.push({
             id: trkId,
             name: (t.name || '').trim() || ('Voz ' + (i + 1)),
-            demoRole: t.demoRole || '',
             localObjectUrl: t.localObjectUrl || '',
             localFileName: t.localFileName || '',
             hasLocalBlob: Boolean(t.hasLocalBlob || t.localFileBlob || t.localObjectUrl),
@@ -4877,14 +4591,12 @@
           });
         }
 
-        const hasAnyRealAudio = preparedTracks.some((t) => t.localObjectUrl || t.audioUrl || t.hasLocalBlob);
         let targetId;
         let savedSongObj = null;
 
         if (editingSongId) {
           const idx = catalog.findIndex((s) => s.id === editingSongId);
           if (idx !== -1) {
-            const wasDemo = Boolean(catalog[idx].isDemo);
             savedSongObj = {
               ...catalog[idx],
               title,
@@ -4894,7 +4606,6 @@
               duration: duration || catalog[idx].duration || 180,
               tags,
               coverUrl,
-              isDemo: wasDemo && !hasAnyRealAudio,
               tracks: preparedTracks
             };
             catalog[idx] = savedSongObj;
@@ -4911,7 +4622,6 @@
             plays: 0,
             tags,
             coverUrl,
-            isDemo: false,
             createdAt: Date.now(),
             tracks: preparedTracks
           };
@@ -4950,6 +4660,7 @@
       elBtnToggleAdminLock.addEventListener('click', () => {
         isAdminMode = !isAdminMode;
         applyAdminUI();
+        renderHomeCards();
         showToast(isAdminMode ? 'Modo Admin ativado.' : 'Modo Cantor ativado.');
       });
 
@@ -4983,25 +4694,6 @@
         e.target.value = '';
       });
 
-      document.getElementById('btnRestoreDemos').addEventListener('click', () => {
-        openConfirm(
-          'Restaurar músicas demonstrativas?',
-          'Isso irá carregar as 3 músicas demonstrativas padrão no repertório.',
-          async () => {
-            const demos = cloneDeep(DEFAULT_SONGS);
-            elJsonTextarea.value = JSON.stringify(buildExportableCatalog(demos), null, 2);
-            catalog = demos;
-            if (currentUser && db) {
-              for (const item of demos) await saveSongToCloud(item);
-            }
-            closeJsonModal();
-            renderFilters();
-            showHomeView();
-            showToast('Músicas demonstrativas restauradas!', 'success');
-          }
-        );
-      });
-
       document.getElementById('btnApplyJson').addEventListener('click', async () => {
         try {
           const parsed = JSON.parse(elJsonTextarea.value);
@@ -5020,14 +4712,12 @@
               duration: Number(item.duration) || 180,
               plays: Number(item.plays) || 0,
               tags: Array.isArray(item.tags) ? item.tags.map(String) : [],
-              isDemo: Boolean(item.isDemo),
               coverUrl: String(item.coverUrl || ''),
               createdAt: Number(item.createdAt) || (Date.now() - idx * 1000),
               tracks: Array.isArray(item.tracks)
                 ? item.tracks.map((t, ti) => ({
                     id: t.id || ('trk_' + Date.now() + '_' + idx + '_' + ti),
                     name: String(t.name || ('Voz ' + (ti + 1))),
-                    demoRole: String(t.demoRole || ''),
                     audioUrl: String(t.audioUrl || '')
                   }))
                 : []
@@ -5039,7 +4729,7 @@
           }
 
           catalog = sanitized;
-          if (currentUser && db) {
+          if (db) {
             for (const song of catalog) await saveSongToCloud(song);
           }
 
@@ -5121,7 +4811,7 @@
         renderFilters();
         renderHomeCards();
 
-        const cloudReady = await initCloudConnection();
+        const cloudReady = initCloudConnection();
         if (cloudReady) {
           subscribeCloudCatalog();
           return;
@@ -5130,6 +4820,7 @@
         const external = await loadExternalCatalogJson();
         if (external) catalog = external;
 
+        isLoadingCatalog = false;
         await hydrateLocalAudios(catalog);
         renderFilters();
         renderHomeCards();
